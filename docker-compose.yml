@@ -63,16 +63,18 @@ services:
 
 ###> doctrine/doctrine-bundle ###
   database:
-    image: postgres:${POSTGRES_VERSION:-14}-alpine
-    environment:
-      - POSTGRES_DB=${POSTGRES_DB:-app}
-      # You should definitely change the password in production
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-!ChangeMe!}
-      - POSTGRES_USER=${POSTGRES_USER:-app}
-    volumes:
-      - db_data:/var/lib/postgresql/data
-      # you may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
-      # - ./api/docker/db/data:/var/lib/postgresql/data
+      image: mysql:8
+      environment: 
+          - MYSQL_ROOT_PASSWORD=root
+          - MYSQL_DATABASE=expenses
+          - MYSQL_USER=api-platform
+          - MYSQL_PASSWORD=verysecret
+      volumes:
+          - ./api/docker/db/data:/var/lib/mysql
+      ports:
+          - target: 3306
+            published: 3306
+            protocol: tcp
 ###< doctrine/doctrine-bundle ###
 
 # Mercure is installed as a Caddy module, prevent the Flex recipe from installing another service
@@ -84,7 +86,6 @@ volumes:
   caddy_data:
   caddy_config:
 ###> doctrine/doctrine-bundle ###
-  db_data:
 ###< doctrine/doctrine-bundle ###
 ###> symfony/mercure-bundle ###
 ###< symfony/mercure-bundle ###
