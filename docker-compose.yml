@@ -16,7 +16,7 @@ services:
       retries: 3
       start_period: 30s
     environment:
-      DATABASE_URL: postgresql://${POSTGRES_USER:-app}:${POSTGRES_PASSWORD:-!ChangeMe!}@database:5432/${POSTGRES_DB:-app}?serverVersion=${POSTGRES_VERSION:-14}
+      DATABASE_URL: mysql://api:verysecret@database:3306/expenses?serverVersion=8&charset=utf8mb4
       TRUSTED_PROXIES: ${TRUSTED_PROXIES:-127.0.0.0/8,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16}
       TRUSTED_HOSTS: ^${SERVER_NAME:-example\.com|localhost}|caddy$$
       MERCURE_URL: ${CADDY_MERCURE_URL:-http://caddy/.well-known/mercure}
@@ -64,10 +64,11 @@ services:
 ###> doctrine/doctrine-bundle ###
   database:
       image: mysql:8
+      command: mysqld --default-authentication-plugin=mysql_native_password
       environment: 
           - MYSQL_ROOT_PASSWORD=root
           - MYSQL_DATABASE=expenses
-          - MYSQL_USER=api-platform
+          - MYSQL_USER=api
           - MYSQL_PASSWORD=verysecret
       volumes:
           - ./api/docker/db/data:/var/lib/mysql
