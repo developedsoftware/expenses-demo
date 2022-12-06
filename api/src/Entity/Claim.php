@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\ApiProperty;
 use App\Repository\ClaimRepository;
@@ -10,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ClaimRepository::class)]
 #[ApiResource]
+#[ApiFilter(SearchFilter::class, properties: ['patient' => 'exact', 'study' => 'exact', 'site' => 'exact', 'claimStatus' => 'exact'])]
 class Claim
 {
     #[ORM\Id]

@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\StudyRepository;
@@ -11,6 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: StudyRepository::class)]
 #[ApiResource]
+#[ApiFilter(SearchFilter::class, properties: ['name' => 'partial', 'reference' => 'exact'])]
 class Study
 {
     #[ORM\Id]

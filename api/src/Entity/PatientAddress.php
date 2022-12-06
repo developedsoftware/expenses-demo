@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\PatientAddressRepository;
@@ -9,6 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PatientAddressRepository::class)]
 #[ApiResource]
+#[ApiFilter(SearchFilter::class, properties: ['patient' => 'exact', 'line1' => 'partial', 'line2' => 'partial', 'line3' => 'partial', 'areaCode' => 'partial', 'countryCode' => 'partial'])]
 class PatientAddress
 {
     #[ORM\Id]

@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\ClaimStatusRepository;
@@ -9,6 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ClaimStatusRepository::class)]
 #[ApiResource]
+#[ApiFilter(SearchFilter::class, properties: ['name' => 'partial'])]
 class ClaimStatus
 {
     #[ORM\Id]
@@ -24,6 +27,7 @@ class ClaimStatus
         return $this->id;
     }
 
+    #[ApiProperty(iris: ['http://schema.org/name'])]
     public function getName(): ?string
     {
         return $this->name;
@@ -35,9 +39,5 @@ class ClaimStatus
 
         return $this;
     }
-    
-    #[ApiProperty(iris: ['http://schema.org/name'])]
-    public function getLabel() {
-        return $this->getName();
-    }
+
 }
