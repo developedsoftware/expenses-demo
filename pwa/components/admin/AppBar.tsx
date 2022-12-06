@@ -12,9 +12,6 @@ import { Box, Button, Menu, MenuItem, Typography } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import DocContext from './DocContext';
-import HydraLogo from './HydraLogo';
-import OpenApiLogo from './OpenApiLogo';
-import Logo from './Logo';
 import { darkTheme, lightTheme } from './themes';
 
 const DocTypeMenuButton = () => {
@@ -37,36 +34,7 @@ const DocTypeMenuButton = () => {
   };
 
   return (
-    <div>
-      <Button
-        color="inherit"
-        aria-controls={open ? 'doc-type-menu' : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
-        onClick={handleClick}>
-        {docType === 'hydra' ? (
-          <>
-            <HydraLogo /> Hydra
-          </>
-        ) : (
-          <>
-            <OpenApiLogo /> OpenAPI
-          </>
-        )}
-        <ExpandMoreIcon fontSize="small" />
-      </Button>
-      <Menu
-        id="doc-type-menu"
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        MenuListProps={{
-          'aria-labelledby': 'basic-button',
-        }}>
-        <MenuItem onClick={changeDocType('hydra')}>Hydra</MenuItem>
-        <MenuItem onClick={changeDocType('openapi')}>OpenAPI</MenuItem>
-      </Menu>
-    </div>
+    <div></div>
   );
 };
 
@@ -81,7 +49,6 @@ const CustomAppBar = ({ classes, userMenu, ...props }: AppBarProps) => {
         className={AppBarClasses.title}
         id="react-admin-title"
       />
-      <Logo />
       <Box component="span" sx={{ flex: 0 }} />
       <DocTypeMenuButton />
       <Box component="span" sx={{ flex: 0.5 }} />
