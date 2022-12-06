@@ -44,13 +44,13 @@ const Welcome = () => (
             </p>
             <ul>
               <li>
-                <Link href="/books">
-                  <a>Books</a>
+                <Link href="/patients">
+                  <a>Patients</a>
                 </Link>
               </li>
               <li>
-                <Link href="/reviews">
-                  <a>Reviews</a>
+                <Link href="/expenseclaims">
+                  <a>Expense Claims</a>
                 </Link>
               </li>
             </ul>
