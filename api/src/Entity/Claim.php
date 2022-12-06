@@ -40,6 +40,9 @@ class Claim
 
     #[ORM\ManyToOne]
     private ?ClaimStatus $claimStatus = null;
+    
+    #[ORM\OneToMany(mappedBy: 'claim', targetEntity: ClaimItem::class)]
+    private Collection $claimItems;
 
     public function __construct()
     {
