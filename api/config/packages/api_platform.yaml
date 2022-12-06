@@ -14,8 +14,7 @@ api_platform:
         html: ['text/html']
     collection:
         pagination:
-          enabled: true
-          enabled_parameter_name: pagination
+          enabled: false
     patch_formats:
         json: ['application/merge-patch+json']
         jsonapi: ['application/vnd.api+json']
@@ -27,8 +26,8 @@ api_platform:
                 type: header
     # Good cache defaults for REST APIs
     defaults:
-        pagination_enabled: true
-        pagination_client_enabled: true
+        pagination_enabled: false
+        pagination_client_enabled: false
         stateless: true
         cache_headers:
             vary: ['Content-Type', 'Authorization', 'Origin']
