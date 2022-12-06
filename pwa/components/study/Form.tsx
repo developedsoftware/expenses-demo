@@ -1,7 +1,7 @@
 import { FunctionComponent, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { ErrorMessage, Formik } from "formik";
+import { ErrorMessage, Field, FieldArray, Formik } from "formik";
 import { useMutation } from "react-query";
 
 import { fetch, FetchError, FetchResponse } from "../../utils/dataAccess";
@@ -162,28 +162,39 @@ export const Form: FunctionComponent<Props> = ({ study }) => {
               />
             </div>
             <div className="form-group">
-              <label className="form-control-label" htmlFor="study_claim">
-                claim
-              </label>
-              <input
-                name="claim"
-                id="study_claim"
-                value={values.claim ?? ""}
-                type="text"
-                placeholder=""
-                className={`form-control${
-                  errors.claim && touched.claim ? " is-invalid" : ""
-                }`}
-                aria-invalid={
-                  errors.claim && touched.claim ? "true" : undefined
-                }
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              <ErrorMessage
-                className="invalid-feedback"
-                component="div"
-                name="claim"
+              <div className="form-control-label">claims</div>
+              <FieldArray
+                name="claims"
+                render={(arrayHelpers) => (
+                  <div id="study_claims">
+                    {values.claims && values.claims.length > 0 ? (
+                      values.claims.map((item: any, index: number) => (
+                        <div key={index}>
+                          <Field name={`claims.${index}`} />
+                          <button
+                            type="button"
+                            onClick={() => arrayHelpers.remove(index)}
+                          >
+                            -
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => arrayHelpers.insert(index, "")}
+                          >
+                            +
+                          </button>
+                        </div>
+                      ))
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => arrayHelpers.push("")}
+                      >
+                        Add
+                      </button>
+                    )}
+                  </div>
+                )}
               />
             </div>
             {status && status.msg && (

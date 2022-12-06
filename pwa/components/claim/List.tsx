@@ -21,11 +21,10 @@ export const List: FunctionComponent<Props> = ({ claims }) => (
           <th>id</th>
           <th>createdAt</th>
           <th>submittedAt</th>
-          <th>patientId</th>
-          <th>studyId</th>
-          <th>siteId</th>
-          <th>claimStatusId</th>
-          <th>claimItems</th>
+          <th>patient</th>
+          <th>study</th>
+          <th>site</th>
+          <th>claimStatus</th>
           <th />
         </tr>
       </thead>
@@ -49,24 +48,24 @@ export const List: FunctionComponent<Props> = ({ claims }) => (
                   <td>
                     <ReferenceLinks
                       items={{
-                        href: getPath(claim["patientId"], "/patients/[id]"),
-                        name: claim["patientId"],
+                        href: getPath(claim["patient"], "/patients/[id]"),
+                        name: claim["patient"],
                       }}
                     />
                   </td>
                   <td>
                     <ReferenceLinks
-                      items={claim["studyId"].map((ref: any) => ({
-                        href: getPath(ref, "/studys/[id]"),
-                        name: ref,
-                      }))}
+                      items={{
+                        href: getPath(claim["study"], "/studys/[id]"),
+                        name: claim["study"],
+                      }}
                     />
                   </td>
                   <td>
                     <ReferenceLinks
                       items={{
-                        href: getPath(claim["siteId"], "/sites/[id]"),
-                        name: claim["siteId"],
+                        href: getPath(claim["site"], "/sites/[id]"),
+                        name: claim["site"],
                       }}
                     />
                   </td>
@@ -74,19 +73,11 @@ export const List: FunctionComponent<Props> = ({ claims }) => (
                     <ReferenceLinks
                       items={{
                         href: getPath(
-                          claim["claimStatusId"],
+                          claim["claimStatus"],
                           "/claimstatuss/[id]"
                         ),
-                        name: claim["claimStatusId"],
+                        name: claim["claimStatus"],
                       }}
-                    />
-                  </td>
-                  <td>
-                    <ReferenceLinks
-                      items={claim["claimItems"].map((ref: any) => ({
-                        href: getPath(ref, "/claimitems/[id]"),
-                        name: ref,
-                      }))}
                     />
                   </td>
                   <td>

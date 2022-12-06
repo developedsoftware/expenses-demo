@@ -48,37 +48,34 @@ export const Show: FunctionComponent<Props> = ({ claimitem, text }) => {
         </thead>
         <tbody>
           <tr>
-            <th scope="row">claimId</th>
+            <th scope="row">claim</th>
             <td>
               <ReferenceLinks
                 items={{
-                  href: getPath(claimitem["claimId"], "/claims/[id]"),
-                  name: claimitem["claimId"],
+                  href: getPath(claimitem["claim"], "/claims/[id]"),
+                  name: claimitem["claim"],
                 }}
               />
             </td>
           </tr>
           <tr>
-            <th scope="row">expenseTypeId</th>
+            <th scope="row">expenseType</th>
             <td>
               <ReferenceLinks
                 items={{
-                  href: getPath(
-                    claimitem["expenseTypeId"],
-                    "/expensetypes/[id]"
-                  ),
-                  name: claimitem["expenseTypeId"],
+                  href: getPath(claimitem["expenseType"], "/expensetypes/[id]"),
+                  name: claimitem["expenseType"],
                 }}
               />
             </td>
           </tr>
           <tr>
-            <th scope="row">currencyId</th>
+            <th scope="row">currency</th>
             <td>
               <ReferenceLinks
                 items={{
-                  href: getPath(claimitem["currencyId"], "/currencys/[id]"),
-                  name: claimitem["currencyId"],
+                  href: getPath(claimitem["currency"], "/currencys/[id]"),
+                  name: claimitem["currency"],
                 }}
               />
             </td>

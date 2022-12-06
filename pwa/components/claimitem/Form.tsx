@@ -116,20 +116,20 @@ export const Form: FunctionComponent<Props> = ({ claimitem }) => {
         }) => (
           <form onSubmit={handleSubmit}>
             <div className="form-group">
-              <label className="form-control-label" htmlFor="claimitem_claimId">
-                claimId
+              <label className="form-control-label" htmlFor="claimitem_claim">
+                claim
               </label>
               <input
-                name="claimId"
-                id="claimitem_claimId"
-                value={values.claimId ?? ""}
+                name="claim"
+                id="claimitem_claim"
+                value={values.claim ?? ""}
                 type="text"
                 placeholder=""
                 className={`form-control${
-                  errors.claimId && touched.claimId ? " is-invalid" : ""
+                  errors.claim && touched.claim ? " is-invalid" : ""
                 }`}
                 aria-invalid={
-                  errors.claimId && touched.claimId ? "true" : undefined
+                  errors.claim && touched.claim ? "true" : undefined
                 }
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -137,31 +137,27 @@ export const Form: FunctionComponent<Props> = ({ claimitem }) => {
               <ErrorMessage
                 className="invalid-feedback"
                 component="div"
-                name="claimId"
+                name="claim"
               />
             </div>
             <div className="form-group">
               <label
                 className="form-control-label"
-                htmlFor="claimitem_expenseTypeId"
+                htmlFor="claimitem_expenseType"
               >
-                expenseTypeId
+                expenseType
               </label>
               <input
-                name="expenseTypeId"
-                id="claimitem_expenseTypeId"
-                value={values.expenseTypeId ?? ""}
+                name="expenseType"
+                id="claimitem_expenseType"
+                value={values.expenseType ?? ""}
                 type="text"
                 placeholder=""
                 className={`form-control${
-                  errors.expenseTypeId && touched.expenseTypeId
-                    ? " is-invalid"
-                    : ""
+                  errors.expenseType && touched.expenseType ? " is-invalid" : ""
                 }`}
                 aria-invalid={
-                  errors.expenseTypeId && touched.expenseTypeId
-                    ? "true"
-                    : undefined
+                  errors.expenseType && touched.expenseType ? "true" : undefined
                 }
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -169,27 +165,27 @@ export const Form: FunctionComponent<Props> = ({ claimitem }) => {
               <ErrorMessage
                 className="invalid-feedback"
                 component="div"
-                name="expenseTypeId"
+                name="expenseType"
               />
             </div>
             <div className="form-group">
               <label
                 className="form-control-label"
-                htmlFor="claimitem_currencyId"
+                htmlFor="claimitem_currency"
               >
-                currencyId
+                currency
               </label>
               <input
-                name="currencyId"
-                id="claimitem_currencyId"
-                value={values.currencyId ?? ""}
+                name="currency"
+                id="claimitem_currency"
+                value={values.currency ?? ""}
                 type="text"
                 placeholder=""
                 className={`form-control${
-                  errors.currencyId && touched.currencyId ? " is-invalid" : ""
+                  errors.currency && touched.currency ? " is-invalid" : ""
                 }`}
                 aria-invalid={
-                  errors.currencyId && touched.currencyId ? "true" : undefined
+                  errors.currency && touched.currency ? "true" : undefined
                 }
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -197,7 +193,7 @@ export const Form: FunctionComponent<Props> = ({ claimitem }) => {
               <ErrorMessage
                 className="invalid-feedback"
                 component="div"
-                name="currencyId"
+                name="currency"
               />
             </div>
             <div className="form-group">

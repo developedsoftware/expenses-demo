@@ -7,7 +7,7 @@ export class Study implements Item {
     _id?: string,
     public name?: string,
     public reference?: string,
-    public claim?: string
+    public claims?: string[]
   ) {
     this["@id"] = _id;
   }

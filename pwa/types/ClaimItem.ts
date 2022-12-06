@@ -5,9 +5,9 @@ export class ClaimItem implements Item {
 
   constructor(
     _id?: string,
-    public claimId?: string,
-    public expenseTypeId?: string,
-    public currencyId?: string,
+    public claim?: string,
+    public expenseType?: string,
+    public currency?: string,
     public amount?: number,
     public additionalInfo?: string,
     public claimTimestamp?: Date,

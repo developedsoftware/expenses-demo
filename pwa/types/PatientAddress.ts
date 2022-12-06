@@ -5,7 +5,7 @@ export class PatientAddress implements Item {
 
   constructor(
     _id?: string,
-    public patientId?: string,
+    public patient?: string,
     public line1?: string,
     public line2?: string,
     public line3?: string,

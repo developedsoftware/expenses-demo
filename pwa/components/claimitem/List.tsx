@@ -19,9 +19,9 @@ export const List: FunctionComponent<Props> = ({ claimitems }) => (
       <thead>
         <tr>
           <th>id</th>
-          <th>claimId</th>
-          <th>expenseTypeId</th>
-          <th>currencyId</th>
+          <th>claim</th>
+          <th>expenseType</th>
+          <th>currency</th>
           <th>amount</th>
           <th>additionalInfo</th>
           <th>claimTimestamp</th>
@@ -47,8 +47,8 @@ export const List: FunctionComponent<Props> = ({ claimitems }) => (
                   <td>
                     <ReferenceLinks
                       items={{
-                        href: getPath(claimitem["claimId"], "/claims/[id]"),
-                        name: claimitem["claimId"],
+                        href: getPath(claimitem["claim"], "/claims/[id]"),
+                        name: claimitem["claim"],
                       }}
                     />
                   </td>
@@ -56,21 +56,18 @@ export const List: FunctionComponent<Props> = ({ claimitems }) => (
                     <ReferenceLinks
                       items={{
                         href: getPath(
-                          claimitem["expenseTypeId"],
+                          claimitem["expenseType"],
                           "/expensetypes/[id]"
                         ),
-                        name: claimitem["expenseTypeId"],
+                        name: claimitem["expenseType"],
                       }}
                     />
                   </td>
                   <td>
                     <ReferenceLinks
                       items={{
-                        href: getPath(
-                          claimitem["currencyId"],
-                          "/currencys/[id]"
-                        ),
-                        name: claimitem["currencyId"],
+                        href: getPath(claimitem["currency"], "/currencys/[id]"),
+                        name: claimitem["currency"],
                       }}
                     />
                   </td>

@@ -19,7 +19,7 @@ export const List: FunctionComponent<Props> = ({ claimitemreceipts }) => (
       <thead>
         <tr>
           <th>id</th>
-          <th>claimItemId</th>
+          <th>claimItem</th>
           <th>data</th>
           <th />
         </tr>
@@ -46,10 +46,10 @@ export const List: FunctionComponent<Props> = ({ claimitemreceipts }) => (
                     <ReferenceLinks
                       items={{
                         href: getPath(
-                          claimitemreceipt["claimItemId"],
+                          claimitemreceipt["claimItem"],
                           "/claimitems/[id]"
                         ),
-                        name: claimitemreceipt["claimItemId"],
+                        name: claimitemreceipt["claimItem"],
                       }}
                     />
                   </td>

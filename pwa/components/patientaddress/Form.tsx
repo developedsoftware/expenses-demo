@@ -123,21 +123,21 @@ export const Form: FunctionComponent<Props> = ({ patientaddress }) => {
             <div className="form-group">
               <label
                 className="form-control-label"
-                htmlFor="patientaddress_patientId"
+                htmlFor="patientaddress_patient"
               >
-                patientId
+                patient
               </label>
               <input
-                name="patientId"
-                id="patientaddress_patientId"
-                value={values.patientId ?? ""}
+                name="patient"
+                id="patientaddress_patient"
+                value={values.patient ?? ""}
                 type="text"
                 placeholder=""
                 className={`form-control${
-                  errors.patientId && touched.patientId ? " is-invalid" : ""
+                  errors.patient && touched.patient ? " is-invalid" : ""
                 }`}
                 aria-invalid={
-                  errors.patientId && touched.patientId ? "true" : undefined
+                  errors.patient && touched.patient ? "true" : undefined
                 }
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -145,7 +145,7 @@ export const Form: FunctionComponent<Props> = ({ patientaddress }) => {
               <ErrorMessage
                 className="invalid-feedback"
                 component="div"
-                name="patientId"
+                name="patient"
               />
             </div>
             <div className="form-group">

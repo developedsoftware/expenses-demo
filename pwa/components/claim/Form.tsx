@@ -1,7 +1,7 @@
 import { FunctionComponent, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { ErrorMessage, Field, FieldArray, Formik } from "formik";
+import { ErrorMessage, Formik } from "formik";
 import { useMutation } from "react-query";
 
 import { fetch, FetchError, FetchResponse } from "../../utils/dataAccess";
@@ -164,20 +164,20 @@ export const Form: FunctionComponent<Props> = ({ claim }) => {
               />
             </div>
             <div className="form-group">
-              <label className="form-control-label" htmlFor="claim_patientId">
-                patientId
+              <label className="form-control-label" htmlFor="claim_patient">
+                patient
               </label>
               <input
-                name="patientId"
-                id="claim_patientId"
-                value={values.patientId ?? ""}
+                name="patient"
+                id="claim_patient"
+                value={values.patient ?? ""}
                 type="text"
                 placeholder=""
                 className={`form-control${
-                  errors.patientId && touched.patientId ? " is-invalid" : ""
+                  errors.patient && touched.patient ? " is-invalid" : ""
                 }`}
                 aria-invalid={
-                  errors.patientId && touched.patientId ? "true" : undefined
+                  errors.patient && touched.patient ? "true" : undefined
                 }
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -185,60 +185,24 @@ export const Form: FunctionComponent<Props> = ({ claim }) => {
               <ErrorMessage
                 className="invalid-feedback"
                 component="div"
-                name="patientId"
+                name="patient"
               />
             </div>
             <div className="form-group">
-              <div className="form-control-label">studyId</div>
-              <FieldArray
-                name="studyId"
-                render={(arrayHelpers) => (
-                  <div id="claim_studyId">
-                    {values.studyId && values.studyId.length > 0 ? (
-                      values.studyId.map((item: any, index: number) => (
-                        <div key={index}>
-                          <Field name={`studyId.${index}`} />
-                          <button
-                            type="button"
-                            onClick={() => arrayHelpers.remove(index)}
-                          >
-                            -
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => arrayHelpers.insert(index, "")}
-                          >
-                            +
-                          </button>
-                        </div>
-                      ))
-                    ) : (
-                      <button
-                        type="button"
-                        onClick={() => arrayHelpers.push("")}
-                      >
-                        Add
-                      </button>
-                    )}
-                  </div>
-                )}
-              />
-            </div>
-            <div className="form-group">
-              <label className="form-control-label" htmlFor="claim_siteId">
-                siteId
+              <label className="form-control-label" htmlFor="claim_study">
+                study
               </label>
               <input
-                name="siteId"
-                id="claim_siteId"
-                value={values.siteId ?? ""}
+                name="study"
+                id="claim_study"
+                value={values.study ?? ""}
                 type="text"
                 placeholder=""
                 className={`form-control${
-                  errors.siteId && touched.siteId ? " is-invalid" : ""
+                  errors.study && touched.study ? " is-invalid" : ""
                 }`}
                 aria-invalid={
-                  errors.siteId && touched.siteId ? "true" : undefined
+                  errors.study && touched.study ? "true" : undefined
                 }
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -246,31 +210,47 @@ export const Form: FunctionComponent<Props> = ({ claim }) => {
               <ErrorMessage
                 className="invalid-feedback"
                 component="div"
-                name="siteId"
+                name="study"
               />
             </div>
             <div className="form-group">
-              <label
-                className="form-control-label"
-                htmlFor="claim_claimStatusId"
-              >
-                claimStatusId
+              <label className="form-control-label" htmlFor="claim_site">
+                site
               </label>
               <input
-                name="claimStatusId"
-                id="claim_claimStatusId"
-                value={values.claimStatusId ?? ""}
+                name="site"
+                id="claim_site"
+                value={values.site ?? ""}
                 type="text"
                 placeholder=""
                 className={`form-control${
-                  errors.claimStatusId && touched.claimStatusId
-                    ? " is-invalid"
-                    : ""
+                  errors.site && touched.site ? " is-invalid" : ""
+                }`}
+                aria-invalid={errors.site && touched.site ? "true" : undefined}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              <ErrorMessage
+                className="invalid-feedback"
+                component="div"
+                name="site"
+              />
+            </div>
+            <div className="form-group">
+              <label className="form-control-label" htmlFor="claim_claimStatus">
+                claimStatus
+              </label>
+              <input
+                name="claimStatus"
+                id="claim_claimStatus"
+                value={values.claimStatus ?? ""}
+                type="text"
+                placeholder=""
+                className={`form-control${
+                  errors.claimStatus && touched.claimStatus ? " is-invalid" : ""
                 }`}
                 aria-invalid={
-                  errors.claimStatusId && touched.claimStatusId
-                    ? "true"
-                    : undefined
+                  errors.claimStatus && touched.claimStatus ? "true" : undefined
                 }
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -278,43 +258,7 @@ export const Form: FunctionComponent<Props> = ({ claim }) => {
               <ErrorMessage
                 className="invalid-feedback"
                 component="div"
-                name="claimStatusId"
-              />
-            </div>
-            <div className="form-group">
-              <div className="form-control-label">claimItems</div>
-              <FieldArray
-                name="claimItems"
-                render={(arrayHelpers) => (
-                  <div id="claim_claimItems">
-                    {values.claimItems && values.claimItems.length > 0 ? (
-                      values.claimItems.map((item: any, index: number) => (
-                        <div key={index}>
-                          <Field name={`claimItems.${index}`} />
-                          <button
-                            type="button"
-                            onClick={() => arrayHelpers.remove(index)}
-                          >
-                            -
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => arrayHelpers.insert(index, "")}
-                          >
-                            +
-                          </button>
-                        </div>
-                      ))
-                    ) : (
-                      <button
-                        type="button"
-                        onClick={() => arrayHelpers.push("")}
-                      >
-                        Add
-                      </button>
-                    )}
-                  </div>
-                )}
+                name="claimStatus"
               />
             </div>
             {status && status.msg && (

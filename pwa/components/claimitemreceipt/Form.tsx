@@ -123,21 +123,21 @@ export const Form: FunctionComponent<Props> = ({ claimitemreceipt }) => {
             <div className="form-group">
               <label
                 className="form-control-label"
-                htmlFor="claimitemreceipt_claimItemId"
+                htmlFor="claimitemreceipt_claimItem"
               >
-                claimItemId
+                claimItem
               </label>
               <input
-                name="claimItemId"
-                id="claimitemreceipt_claimItemId"
-                value={values.claimItemId ?? ""}
+                name="claimItem"
+                id="claimitemreceipt_claimItem"
+                value={values.claimItem ?? ""}
                 type="text"
                 placeholder=""
                 className={`form-control${
-                  errors.claimItemId && touched.claimItemId ? " is-invalid" : ""
+                  errors.claimItem && touched.claimItem ? " is-invalid" : ""
                 }`}
                 aria-invalid={
-                  errors.claimItemId && touched.claimItemId ? "true" : undefined
+                  errors.claimItem && touched.claimItem ? "true" : undefined
                 }
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -145,7 +145,7 @@ export const Form: FunctionComponent<Props> = ({ claimitemreceipt }) => {
               <ErrorMessage
                 className="invalid-feedback"
                 component="div"
-                name="claimItemId"
+                name="claimItem"
               />
             </div>
             <div className="form-group">

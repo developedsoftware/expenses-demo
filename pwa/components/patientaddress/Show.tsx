@@ -48,12 +48,12 @@ export const Show: FunctionComponent<Props> = ({ patientaddress, text }) => {
         </thead>
         <tbody>
           <tr>
-            <th scope="row">patientId</th>
+            <th scope="row">patient</th>
             <td>
               <ReferenceLinks
                 items={{
-                  href: getPath(patientaddress["patientId"], "/patients/[id]"),
-                  name: patientaddress["patientId"],
+                  href: getPath(patientaddress["patient"], "/patients/[id]"),
+                  name: patientaddress["patient"],
                 }}
               />
             </td>

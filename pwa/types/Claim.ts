@@ -7,11 +7,10 @@ export class Claim implements Item {
     _id?: string,
     public createdAt?: Date,
     public submittedAt?: Date,
-    public patientId?: string,
-    public studyId?: string[],
-    public siteId?: string,
-    public claimStatusId?: string,
-    public claimItems?: string[]
+    public patient?: string,
+    public study?: string,
+    public site?: string,
+    public claimStatus?: string
   ) {
     this["@id"] = _id;
   }
