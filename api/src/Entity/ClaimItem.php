@@ -54,7 +54,7 @@ class ClaimItem
     #[ApiProperty(iris: ['http://schema.org/name'])]
     public function getClaimType(): ?string
     {
-        return "{$this->getExpenseType()->getName()}/{$this->getClaimTimestamp()}";
+        return "{$this->getExpenseType()->getName()}/{$this->getId()}";
     }
 
     public function getClaim(): ?Claim

@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\ClaimItemReceiptRepository;
 use Doctrine\DBAL\Types\Types;
@@ -37,6 +38,12 @@ class ClaimItemReceipt
         $this->claimItem = $claimItem;
 
         return $this;
+    }
+    
+    #[ApiProperty(iris: ['http://schema.org/name'])]
+    public function getPreview(): string
+    {
+        return "some preview here";
     }
 
     public function getData()

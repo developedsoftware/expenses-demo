@@ -70,25 +70,25 @@ class Site
         return $this->claims;
     }
 
-    public function addClaim(Claim $claim): self
-    {
-        if (!$this->claims->contains($claim)) {
-            $this->claims->add($claim);
-            $claim->setSite($this);
-        }
-
-        return $this;
-    }
-
-    public function removeClaim(Claim $claim): self
-    {
-        if ($this->claims->removeElement($claim)) {
-            // set the owning side to null (unless already changed)
-            if ($claim->getSite() === $this) {
-                $claim->setSite(null);
-            }
-        }
-
-        return $this;
-    }
+//    public function addClaim(Claim $claim): self
+//    {
+//        if (!$this->claims->contains($claim)) {
+//            $this->claims->add($claim);
+//            $claim->setSite($this);
+//        }
+//
+//        return $this;
+//    }
+//
+//    public function removeClaim(Claim $claim): self
+//    {
+//        if ($this->claims->removeElement($claim)) {
+//            // set the owning side to null (unless already changed)
+//            if ($claim->getSite() === $this) {
+//                $claim->setSite(null);
+//            }
+//        }
+//
+//        return $this;
+//    }
 }

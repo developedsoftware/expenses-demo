@@ -56,7 +56,8 @@ class Patient
     }
     
     #[ApiProperty(iris: ['http://schema.org/name'])]
-    public function getName() {
+    public function getName(): ?string
+    {
         return "{$this->getFirstName()} {$this->getLastName()}";
     }
 

@@ -65,30 +65,30 @@ class Study
     /**
      * @return Collection<int, Claim>
      */
-    public function getClaims(): Collection
-    {
-        return $this->claims;
-    }
-
-    public function addClaim(Claim $claim): self
-    {
-        if (!$this->claims->contains($claim)) {
-            $this->claims->add($claim);
-            $claim->setStudy($this);
-        }
-
-        return $this;
-    }
-
-    public function removeClaim(Claim $claim): self
-    {
-        if ($this->claims->removeElement($claim)) {
-            // set the owning side to null (unless already changed)
-            if ($claim->getStudy() === $this) {
-                $claim->setStudy(null);
-            }
-        }
-
-        return $this;
-    }
+//    public function getClaims(): Collection
+//    {
+//        return $this->claims;
+//    }
+//
+//    public function addClaim(Claim $claim): self
+//    {
+//        if (!$this->claims->contains($claim)) {
+//            $this->claims->add($claim);
+//            $claim->setStudy($this);
+//        }
+//
+//        return $this;
+//    }
+//
+//    public function removeClaim(Claim $claim): self
+//    {
+//        if ($this->claims->removeElement($claim)) {
+//            // set the owning side to null (unless already changed)
+//            if ($claim->getStudy() === $this) {
+//                $claim->setStudy(null);
+//            }
+//        }
+//
+//        return $this;
+//    }
 }
