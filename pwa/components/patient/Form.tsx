@@ -171,31 +171,6 @@ export const Form: FunctionComponent<Props> = ({ patient }) => {
               />
             </div>
             <div className="form-group">
-              <label className="form-control-label" htmlFor="patient_password">
-                password
-              </label>
-              <input
-                name="password"
-                id="patient_password"
-                value={values.password ?? ""}
-                type="text"
-                placeholder=""
-                className={`form-control${
-                  errors.password && touched.password ? " is-invalid" : ""
-                }`}
-                aria-invalid={
-                  errors.password && touched.password ? "true" : undefined
-                }
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              <ErrorMessage
-                className="invalid-feedback"
-                component="div"
-                name="password"
-              />
-            </div>
-            <div className="form-group">
               <label className="form-control-label" htmlFor="patient_firstName">
                 firstName
               </label>

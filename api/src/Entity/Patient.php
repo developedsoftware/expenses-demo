@@ -27,9 +27,6 @@ class Patient
     #[ORM\Column(length: 255)]
     private ?string $email = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $password = null;
-
     #[ORM\Column(length: 255)]
     private ?string $firstName = null;
 
@@ -84,18 +81,6 @@ class Patient
     public function setEmail(string $email): self
     {
         $this->email = $email;
-
-        return $this;
-    }
-
-    public function getPassword(): ?string
-    {
-        return $this->password;
-    }
-
-    public function setPassword(?string $password): self
-    {
-        $this->password = $password;
 
         return $this;
     }

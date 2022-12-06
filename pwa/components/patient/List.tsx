@@ -21,7 +21,6 @@ export const List: FunctionComponent<Props> = ({ patients }) => (
           <th>id</th>
           <th>registrationNumber</th>
           <th>email</th>
-          <th>password</th>
           <th>firstName</th>
           <th>lastName</th>
           <th>patientAddresses</th>
@@ -47,7 +46,6 @@ export const List: FunctionComponent<Props> = ({ patients }) => (
                   </th>
                   <td>{patient["registrationNumber"]}</td>
                   <td>{patient["email"]}</td>
-                  <td>{patient["password"]}</td>
                   <td>{patient["firstName"]}</td>
                   <td>{patient["lastName"]}</td>
                   <td>

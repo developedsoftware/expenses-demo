@@ -7,7 +7,6 @@ export class Patient implements Item {
     _id?: string,
     public registrationNumber?: number,
     public email?: string,
-    public password?: string,
     public firstName?: string,
     public lastName?: string,
     public patientAddresses?: string[],

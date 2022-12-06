@@ -56,10 +56,6 @@ export const Show: FunctionComponent<Props> = ({ patient, text }) => {
             <td>{patient["email"]}</td>
           </tr>
           <tr>
-            <th scope="row">password</th>
-            <td>{patient["password"]}</td>
-          </tr>
-          <tr>
             <th scope="row">firstName</th>
             <td>{patient["firstName"]}</td>
           </tr>
