@@ -18,6 +18,11 @@ php:
     - "10.0.0.0/8"
     - "172.16.0.0/12"
     - "192.168.0.0/16"
+  host: "chart-example.local"
+  jwt:
+    secretKey: ""
+    publicKey: ""
+    passphrase: ""
 
 pwa:
   image:
@@ -37,8 +42,8 @@ caddy:
 mercure:
   publicUrl: https://chart-example.local/.well-known/mercure
   # Change me!
-  jwtSecret: "!ChangeMe!"
-  corsAllowedOrigins: "^https?://.*?\\.chart-example\\.local$"
+  jwtSecret: "!ChangeThisMercureHubJWTSecretKey!"
+  extraDirectives: cors_origins http://chart-example.local https://chart-example.local
 
 # Full configuration: https://github.com/bitnami/charts/tree/master/bitnami/postgresql
 postgresql:
@@ -51,11 +56,28 @@ postgresql:
   # Persistent Volume Storage configuration.
   # ref: https://kubernetes.io/docs/user-guide/persistent-volumes
   persistence:
-    enabled: false
+    enabled: true
+    storageClass: standard
+    size: 1Gi
   pullPolicy: IfNotPresent
   image:
     repository: bitnami/postgresql
-    tag: 13
+    tag: 14
+  resources:
+    requests:
+      memory: 50Mi
+      cpu: 1m
+
+external-dns:
+  enabled: true
+  domainFilters:
+    - chart-example.local
+  provider: cloudflare
+  cloudflare:
+    apiToken: ""
+  zoneIdFilters: []
+  rbac:
+    create: true
 
 imagePullSecrets: []
 nameOverride: ""
@@ -84,11 +106,11 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
-  type: ClusterIP
+  type: NodePort
   port: 80
 
 ingress:
-  enabled: false
+  enabled: true
   annotations: {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
