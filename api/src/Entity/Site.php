@@ -18,34 +18,22 @@ class Site
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $site_reference = null;
-
-    #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\OneToMany(mappedBy: 'site', targetEntity: PatientStudySiteVisit::class, orphanRemoval: true)]
-    private Collection $patientStudySiteVisits;
+    #[ORM\Column(length: 255)]
+    private ?string $reference = null;
+
+    #[ORM\OneToMany(mappedBy: 'siteId', targetEntity: Claim::class)]
+    private Collection $claims;
 
     public function __construct()
     {
-        $this->patientStudySiteVisits = new ArrayCollection();
+        $this->claims = new ArrayCollection();
     }
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getSiteReference(): ?string
-    {
-        return $this->site_reference;
-    }
-
-    public function setSiteReference(string $site_reference): self
-    {
-        $this->site_reference = $site_reference;
-
-        return $this;
     }
 
     public function getName(): ?string
@@ -60,30 +48,42 @@ class Site
         return $this;
     }
 
-    /**
-     * @return Collection<int, PatientStudySiteVisit>
-     */
-    public function getPatientStudySiteVisits(): Collection
+    public function getReference(): ?string
     {
-        return $this->patientStudySiteVisits;
+        return $this->reference;
     }
 
-    public function addPatientStudySiteVisit(PatientStudySiteVisit $patientStudySiteVisit): self
+    public function setReference(string $reference): self
     {
-        if (!$this->patientStudySiteVisits->contains($patientStudySiteVisit)) {
-            $this->patientStudySiteVisits->add($patientStudySiteVisit);
-            $patientStudySiteVisit->setSiteId($this);
+        $this->reference = $reference;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Claim>
+     */
+    public function getClaims(): Collection
+    {
+        return $this->claims;
+    }
+
+    public function addClaim(Claim $claim): self
+    {
+        if (!$this->claims->contains($claim)) {
+            $this->claims->add($claim);
+            $claim->setSiteId($this);
         }
 
         return $this;
     }
 
-    public function removePatientStudySiteVisit(PatientStudySiteVisit $patientStudySiteVisit): self
+    public function removeClaim(Claim $claim): self
     {
-        if ($this->patientStudySiteVisits->removeElement($patientStudySiteVisit)) {
+        if ($this->claims->removeElement($claim)) {
             // set the owning side to null (unless already changed)
-            if ($patientStudySiteVisit->getSiteId() === $this) {
-                $patientStudySiteVisit->setSiteId(null);
+            if ($claim->getSiteId() === $this) {
+                $claim->setSiteId(null);
             }
         }
 

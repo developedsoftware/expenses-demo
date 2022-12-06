@@ -28,7 +28,7 @@ final class ProfileControllerTest extends ApiTestCase
      */
     public function testProfile(): void
     {
-        $response = $this->client->request('POST', '/authentication_token', [
+        $response = $this->client->request('POST', '/auth', [
             'json' => [
                 'email' => 'admin@example.com',
                 'password' => 'admin',

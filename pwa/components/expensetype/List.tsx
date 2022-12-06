@@ -20,7 +20,6 @@ export const List: FunctionComponent<Props> = ({ expensetypes }) => (
         <tr>
           <th>id</th>
           <th>name</th>
-          <th>expenseClaimItems</th>
           <th />
         </tr>
       </thead>
@@ -40,16 +39,6 @@ export const List: FunctionComponent<Props> = ({ expensetypes }) => (
                     />
                   </th>
                   <td>{expensetype["name"]}</td>
-                  <td>
-                    <ReferenceLinks
-                      items={expensetype["expenseClaimItems"].map(
-                        (ref: any) => ({
-                          href: getPath(ref, "/expenseclaimitems/[id]"),
-                          name: ref,
-                        })
-                      )}
-                    />
-                  </td>
                   <td>
                     <Link
                       href={getPath(expensetype["@id"], "/expensetypes/[id]")}

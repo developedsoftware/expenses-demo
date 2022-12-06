@@ -17,28 +17,22 @@ class PatientAddress
 
     #[ORM\ManyToOne(inversedBy: 'patientAddresses')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Patient $patient = null;
+    private ?Patient $patientId = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $address_line_1 = null;
+    private ?string $line1 = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $address_line_2 = null;
+    private ?string $line2 = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $address_line_3 = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $address_line_4 = null;
+    private ?string $line3 = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $area_code = null;
+    private ?string $areaCode = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $country_code = null;
-
-    #[ORM\Column]
-    private ?bool $is_primary = null;
+    private ?string $countryCode = null;
 
     public function getId(): ?int
     {
@@ -47,96 +41,72 @@ class PatientAddress
 
     public function getPatientId(): ?Patient
     {
-        return $this->patient;
+        return $this->patientId;
     }
 
-    public function setPatientId(?Patient $patient): self
+    public function setPatientId(?Patient $patientId): self
     {
-        $this->patient = $patient;
+        $this->patientId = $patientId;
 
         return $this;
     }
 
-    public function getAddressLine1(): ?string
+    public function getLine1(): ?string
     {
-        return $this->address_line_1;
+        return $this->line1;
     }
 
-    public function setAddressLine1(string $address_line_1): self
+    public function setLine1(string $line1): self
     {
-        $this->address_line_1 = $address_line_1;
+        $this->line1 = $line1;
 
         return $this;
     }
 
-    public function getAddressLine2(): ?string
+    public function getLine2(): ?string
     {
-        return $this->address_line_2;
+        return $this->line2;
     }
 
-    public function setAddressLine2(?string $address_line_2): self
+    public function setLine2(?string $line2): self
     {
-        $this->address_line_2 = $address_line_2;
+        $this->line2 = $line2;
 
         return $this;
     }
 
-    public function getAddressLine3(): ?string
+    public function getLine3(): ?string
     {
-        return $this->address_line_3;
+        return $this->line3;
     }
 
-    public function setAddressLine3(?string $address_line_3): self
+    public function setLine3(?string $line3): self
     {
-        $this->address_line_3 = $address_line_3;
-
-        return $this;
-    }
-
-    public function getAddressLine4(): ?string
-    {
-        return $this->address_line_4;
-    }
-
-    public function setAddressLine4(?string $address_line_4): self
-    {
-        $this->address_line_4 = $address_line_4;
+        $this->line3 = $line3;
 
         return $this;
     }
 
     public function getAreaCode(): ?string
     {
-        return $this->area_code;
+        return $this->areaCode;
     }
 
-    public function setAreaCode(string $area_code): self
+    public function setAreaCode(string $areaCode): self
     {
-        $this->area_code = $area_code;
+        $this->areaCode = $areaCode;
 
         return $this;
     }
 
     public function getCountryCode(): ?string
     {
-        return $this->country_code;
+        return $this->countryCode;
     }
 
-    public function setCountryCode(string $country_code): self
+    public function setCountryCode(string $countryCode): self
     {
-        $this->country_code = $country_code;
-
-        return $this;
-    }
-
-    public function isIsPrimary(): ?bool
-    {
-        return $this->is_primary;
-    }
-
-    public function setIsPrimary(bool $is_primary): self
-    {
-        $this->is_primary = $is_primary;
+        $this->countryCode = $countryCode;
 
         return $this;
     }

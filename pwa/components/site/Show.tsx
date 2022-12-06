@@ -52,23 +52,19 @@ export const Show: FunctionComponent<Props> = ({ site, text }) => {
             <td>{site["name"]}</td>
           </tr>
           <tr>
-            <th scope="row">patientStudySiteVisits</th>
+            <th scope="row">reference</th>
+            <td>{site["reference"]}</td>
+          </tr>
+          <tr>
+            <th scope="row">claims</th>
             <td>
               <ReferenceLinks
-                items={site["patientStudySiteVisits"].map((ref: any) => ({
-                  href: getPath(ref, "/patientstudysitevisits/[id]"),
+                items={site["claims"].map((ref: any) => ({
+                  href: getPath(ref, "/claims/[id]"),
                   name: ref,
                 }))}
               />
             </td>
-          </tr>
-          <tr>
-            <th scope="row">siteReference</th>
-            <td>{site["siteReference"]}</td>
-          </tr>
-          <tr>
-            <th scope="row">site_reference</th>
-            <td>{site["site_reference"]}</td>
           </tr>
         </tbody>
       </table>

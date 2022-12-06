@@ -6,9 +6,8 @@ export class Study implements Item {
   constructor(
     _id?: string,
     public name?: string,
-    public patientStudySiteVisits?: string[],
-    public studyReference?: string,
-    public study_reference?: string
+    public reference?: string,
+    public claim?: string
   ) {
     this["@id"] = _id;
   }

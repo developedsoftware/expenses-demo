@@ -48,12 +48,24 @@ export const Show: FunctionComponent<Props> = ({ patient, text }) => {
         </thead>
         <tbody>
           <tr>
+            <th scope="row">registrationNumber</th>
+            <td>{patient["registrationNumber"]}</td>
+          </tr>
+          <tr>
             <th scope="row">email</th>
             <td>{patient["email"]}</td>
           </tr>
           <tr>
             <th scope="row">password</th>
             <td>{patient["password"]}</td>
+          </tr>
+          <tr>
+            <th scope="row">firstName</th>
+            <td>{patient["firstName"]}</td>
+          </tr>
+          <tr>
+            <th scope="row">lastName</th>
+            <td>{patient["lastName"]}</td>
           </tr>
           <tr>
             <th scope="row">patientAddresses</th>
@@ -67,60 +79,26 @@ export const Show: FunctionComponent<Props> = ({ patient, text }) => {
             </td>
           </tr>
           <tr>
-            <th scope="row">patientStripeAccount</th>
+            <th scope="row">patientPaymentGateways</th>
             <td>
               <ReferenceLinks
-                items={{
-                  href: getPath(
-                    patient["patientStripeAccount"],
-                    "/patientstripeaccounts/[id]"
-                  ),
-                  name: patient["patientStripeAccount"],
-                }}
-              />
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">patientStudySiteVisits</th>
-            <td>
-              <ReferenceLinks
-                items={patient["patientStudySiteVisits"].map((ref: any) => ({
-                  href: getPath(ref, "/patientstudysitevisits/[id]"),
+                items={patient["patientPaymentGateways"].map((ref: any) => ({
+                  href: getPath(ref, "/patientpaymentgateways/[id]"),
                   name: ref,
                 }))}
               />
             </td>
           </tr>
           <tr>
-            <th scope="row">expenseClaims</th>
+            <th scope="row">claims</th>
             <td>
               <ReferenceLinks
-                items={patient["expenseClaims"].map((ref: any) => ({
-                  href: getPath(ref, "/expenseclaims/[id]"),
+                items={patient["claims"].map((ref: any) => ({
+                  href: getPath(ref, "/claims/[id]"),
                   name: ref,
                 }))}
               />
             </td>
-          </tr>
-          <tr>
-            <th scope="row">registrationId</th>
-            <td>{patient["registrationId"]}</td>
-          </tr>
-          <tr>
-            <th scope="row">firstName</th>
-            <td>{patient["firstName"]}</td>
-          </tr>
-          <tr>
-            <th scope="row">lastName</th>
-            <td>{patient["lastName"]}</td>
-          </tr>
-          <tr>
-            <th scope="row">first_name</th>
-            <td>{patient["first_name"]}</td>
-          </tr>
-          <tr>
-            <th scope="row">last_name</th>
-            <td>{patient["last_name"]}</td>
           </tr>
         </tbody>
       </table>

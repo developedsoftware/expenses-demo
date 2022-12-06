@@ -1,7 +1,7 @@
 import { FunctionComponent, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { ErrorMessage, Field, FieldArray, Formik } from "formik";
+import { ErrorMessage, Formik } from "formik";
 import { useMutation } from "react-query";
 
 import { fetch, FetchError, FetchResponse } from "../../utils/dataAccess";
@@ -138,45 +138,6 @@ export const Form: FunctionComponent<Props> = ({ expensetype }) => {
                 className="invalid-feedback"
                 component="div"
                 name="name"
-              />
-            </div>
-            <div className="form-group">
-              <div className="form-control-label">expenseClaimItems</div>
-              <FieldArray
-                name="expenseClaimItems"
-                render={(arrayHelpers) => (
-                  <div id="expensetype_expenseClaimItems">
-                    {values.expenseClaimItems &&
-                    values.expenseClaimItems.length > 0 ? (
-                      values.expenseClaimItems.map(
-                        (item: any, index: number) => (
-                          <div key={index}>
-                            <Field name={`expenseClaimItems.${index}`} />
-                            <button
-                              type="button"
-                              onClick={() => arrayHelpers.remove(index)}
-                            >
-                              -
-                            </button>
-                            <button
-                              type="button"
-                              onClick={() => arrayHelpers.insert(index, "")}
-                            >
-                              +
-                            </button>
-                          </div>
-                        )
-                      )
-                    ) : (
-                      <button
-                        type="button"
-                        onClick={() => arrayHelpers.push("")}
-                      >
-                        Add
-                      </button>
-                    )}
-                  </div>
-                )}
               />
             </div>
             {status && status.msg && (

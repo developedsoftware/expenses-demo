@@ -151,25 +151,21 @@ export const Form: FunctionComponent<Props> = ({ patientaddress }) => {
             <div className="form-group">
               <label
                 className="form-control-label"
-                htmlFor="patientaddress_addressLine1"
+                htmlFor="patientaddress_line1"
               >
-                addressLine1
+                line1
               </label>
               <input
-                name="addressLine1"
-                id="patientaddress_addressLine1"
-                value={values.addressLine1 ?? ""}
+                name="line1"
+                id="patientaddress_line1"
+                value={values.line1 ?? ""}
                 type="text"
                 placeholder=""
                 className={`form-control${
-                  errors.addressLine1 && touched.addressLine1
-                    ? " is-invalid"
-                    : ""
+                  errors.line1 && touched.line1 ? " is-invalid" : ""
                 }`}
                 aria-invalid={
-                  errors.addressLine1 && touched.addressLine1
-                    ? "true"
-                    : undefined
+                  errors.line1 && touched.line1 ? "true" : undefined
                 }
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -177,31 +173,27 @@ export const Form: FunctionComponent<Props> = ({ patientaddress }) => {
               <ErrorMessage
                 className="invalid-feedback"
                 component="div"
-                name="addressLine1"
+                name="line1"
               />
             </div>
             <div className="form-group">
               <label
                 className="form-control-label"
-                htmlFor="patientaddress_addressLine2"
+                htmlFor="patientaddress_line2"
               >
-                addressLine2
+                line2
               </label>
               <input
-                name="addressLine2"
-                id="patientaddress_addressLine2"
-                value={values.addressLine2 ?? ""}
+                name="line2"
+                id="patientaddress_line2"
+                value={values.line2 ?? ""}
                 type="text"
                 placeholder=""
                 className={`form-control${
-                  errors.addressLine2 && touched.addressLine2
-                    ? " is-invalid"
-                    : ""
+                  errors.line2 && touched.line2 ? " is-invalid" : ""
                 }`}
                 aria-invalid={
-                  errors.addressLine2 && touched.addressLine2
-                    ? "true"
-                    : undefined
+                  errors.line2 && touched.line2 ? "true" : undefined
                 }
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -209,31 +201,27 @@ export const Form: FunctionComponent<Props> = ({ patientaddress }) => {
               <ErrorMessage
                 className="invalid-feedback"
                 component="div"
-                name="addressLine2"
+                name="line2"
               />
             </div>
             <div className="form-group">
               <label
                 className="form-control-label"
-                htmlFor="patientaddress_addressLine3"
+                htmlFor="patientaddress_line3"
               >
-                addressLine3
+                line3
               </label>
               <input
-                name="addressLine3"
-                id="patientaddress_addressLine3"
-                value={values.addressLine3 ?? ""}
+                name="line3"
+                id="patientaddress_line3"
+                value={values.line3 ?? ""}
                 type="text"
                 placeholder=""
                 className={`form-control${
-                  errors.addressLine3 && touched.addressLine3
-                    ? " is-invalid"
-                    : ""
+                  errors.line3 && touched.line3 ? " is-invalid" : ""
                 }`}
                 aria-invalid={
-                  errors.addressLine3 && touched.addressLine3
-                    ? "true"
-                    : undefined
+                  errors.line3 && touched.line3 ? "true" : undefined
                 }
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -241,39 +229,7 @@ export const Form: FunctionComponent<Props> = ({ patientaddress }) => {
               <ErrorMessage
                 className="invalid-feedback"
                 component="div"
-                name="addressLine3"
-              />
-            </div>
-            <div className="form-group">
-              <label
-                className="form-control-label"
-                htmlFor="patientaddress_addressLine4"
-              >
-                addressLine4
-              </label>
-              <input
-                name="addressLine4"
-                id="patientaddress_addressLine4"
-                value={values.addressLine4 ?? ""}
-                type="text"
-                placeholder=""
-                className={`form-control${
-                  errors.addressLine4 && touched.addressLine4
-                    ? " is-invalid"
-                    : ""
-                }`}
-                aria-invalid={
-                  errors.addressLine4 && touched.addressLine4
-                    ? "true"
-                    : undefined
-                }
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              <ErrorMessage
-                className="invalid-feedback"
-                component="div"
-                name="addressLine4"
+                name="line3"
               />
             </div>
             <div className="form-group">
@@ -330,250 +286,6 @@ export const Form: FunctionComponent<Props> = ({ patientaddress }) => {
                 className="invalid-feedback"
                 component="div"
                 name="countryCode"
-              />
-            </div>
-            <div className="form-group">
-              <label
-                className="form-control-label"
-                htmlFor="patientaddress_isPrimary"
-              >
-                isPrimary
-              </label>
-              <input
-                name="isPrimary"
-                id="patientaddress_isPrimary"
-                value={values.isPrimary ?? ""}
-                type="checkbox"
-                placeholder=""
-                className={`form-control${
-                  errors.isPrimary && touched.isPrimary ? " is-invalid" : ""
-                }`}
-                aria-invalid={
-                  errors.isPrimary && touched.isPrimary ? "true" : undefined
-                }
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              <ErrorMessage
-                className="invalid-feedback"
-                component="div"
-                name="isPrimary"
-              />
-            </div>
-            <div className="form-group">
-              <label
-                className="form-control-label"
-                htmlFor="patientaddress_address_line_1"
-              >
-                address_line_1
-              </label>
-              <input
-                name="address_line_1"
-                id="patientaddress_address_line_1"
-                value={values.address_line_1 ?? ""}
-                type="text"
-                placeholder=""
-                className={`form-control${
-                  errors.address_line_1 && touched.address_line_1
-                    ? " is-invalid"
-                    : ""
-                }`}
-                aria-invalid={
-                  errors.address_line_1 && touched.address_line_1
-                    ? "true"
-                    : undefined
-                }
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              <ErrorMessage
-                className="invalid-feedback"
-                component="div"
-                name="address_line_1"
-              />
-            </div>
-            <div className="form-group">
-              <label
-                className="form-control-label"
-                htmlFor="patientaddress_address_line_2"
-              >
-                address_line_2
-              </label>
-              <input
-                name="address_line_2"
-                id="patientaddress_address_line_2"
-                value={values.address_line_2 ?? ""}
-                type="text"
-                placeholder=""
-                className={`form-control${
-                  errors.address_line_2 && touched.address_line_2
-                    ? " is-invalid"
-                    : ""
-                }`}
-                aria-invalid={
-                  errors.address_line_2 && touched.address_line_2
-                    ? "true"
-                    : undefined
-                }
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              <ErrorMessage
-                className="invalid-feedback"
-                component="div"
-                name="address_line_2"
-              />
-            </div>
-            <div className="form-group">
-              <label
-                className="form-control-label"
-                htmlFor="patientaddress_address_line_3"
-              >
-                address_line_3
-              </label>
-              <input
-                name="address_line_3"
-                id="patientaddress_address_line_3"
-                value={values.address_line_3 ?? ""}
-                type="text"
-                placeholder=""
-                className={`form-control${
-                  errors.address_line_3 && touched.address_line_3
-                    ? " is-invalid"
-                    : ""
-                }`}
-                aria-invalid={
-                  errors.address_line_3 && touched.address_line_3
-                    ? "true"
-                    : undefined
-                }
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              <ErrorMessage
-                className="invalid-feedback"
-                component="div"
-                name="address_line_3"
-              />
-            </div>
-            <div className="form-group">
-              <label
-                className="form-control-label"
-                htmlFor="patientaddress_address_line_4"
-              >
-                address_line_4
-              </label>
-              <input
-                name="address_line_4"
-                id="patientaddress_address_line_4"
-                value={values.address_line_4 ?? ""}
-                type="text"
-                placeholder=""
-                className={`form-control${
-                  errors.address_line_4 && touched.address_line_4
-                    ? " is-invalid"
-                    : ""
-                }`}
-                aria-invalid={
-                  errors.address_line_4 && touched.address_line_4
-                    ? "true"
-                    : undefined
-                }
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              <ErrorMessage
-                className="invalid-feedback"
-                component="div"
-                name="address_line_4"
-              />
-            </div>
-            <div className="form-group">
-              <label
-                className="form-control-label"
-                htmlFor="patientaddress_area_code"
-              >
-                area_code
-              </label>
-              <input
-                name="area_code"
-                id="patientaddress_area_code"
-                value={values.area_code ?? ""}
-                type="text"
-                placeholder=""
-                className={`form-control${
-                  errors.area_code && touched.area_code ? " is-invalid" : ""
-                }`}
-                aria-invalid={
-                  errors.area_code && touched.area_code ? "true" : undefined
-                }
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              <ErrorMessage
-                className="invalid-feedback"
-                component="div"
-                name="area_code"
-              />
-            </div>
-            <div className="form-group">
-              <label
-                className="form-control-label"
-                htmlFor="patientaddress_country_code"
-              >
-                country_code
-              </label>
-              <input
-                name="country_code"
-                id="patientaddress_country_code"
-                value={values.country_code ?? ""}
-                type="text"
-                placeholder=""
-                className={`form-control${
-                  errors.country_code && touched.country_code
-                    ? " is-invalid"
-                    : ""
-                }`}
-                aria-invalid={
-                  errors.country_code && touched.country_code
-                    ? "true"
-                    : undefined
-                }
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              <ErrorMessage
-                className="invalid-feedback"
-                component="div"
-                name="country_code"
-              />
-            </div>
-            <div className="form-group">
-              <label
-                className="form-control-label"
-                htmlFor="patientaddress_is_primary"
-              >
-                is_primary
-              </label>
-              <input
-                name="is_primary"
-                id="patientaddress_is_primary"
-                value={values.is_primary ?? ""}
-                type="checkbox"
-                placeholder=""
-                className={`form-control${
-                  errors.is_primary && touched.is_primary ? " is-invalid" : ""
-                }`}
-                aria-invalid={
-                  errors.is_primary && touched.is_primary ? "true" : undefined
-                }
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              <ErrorMessage
-                className="invalid-feedback"
-                component="div"
-                name="is_primary"
               />
             </div>
             {status && status.msg && (

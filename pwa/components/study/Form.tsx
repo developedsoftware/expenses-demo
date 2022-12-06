@@ -1,7 +1,7 @@
 import { FunctionComponent, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { ErrorMessage, Field, FieldArray, Formik } from "formik";
+import { ErrorMessage, Formik } from "formik";
 import { useMutation } from "react-query";
 
 import { fetch, FetchError, FetchResponse } from "../../utils/dataAccess";
@@ -137,66 +137,20 @@ export const Form: FunctionComponent<Props> = ({ study }) => {
               />
             </div>
             <div className="form-group">
-              <div className="form-control-label">patientStudySiteVisits</div>
-              <FieldArray
-                name="patientStudySiteVisits"
-                render={(arrayHelpers) => (
-                  <div id="study_patientStudySiteVisits">
-                    {values.patientStudySiteVisits &&
-                    values.patientStudySiteVisits.length > 0 ? (
-                      values.patientStudySiteVisits.map(
-                        (item: any, index: number) => (
-                          <div key={index}>
-                            <Field name={`patientStudySiteVisits.${index}`} />
-                            <button
-                              type="button"
-                              onClick={() => arrayHelpers.remove(index)}
-                            >
-                              -
-                            </button>
-                            <button
-                              type="button"
-                              onClick={() => arrayHelpers.insert(index, "")}
-                            >
-                              +
-                            </button>
-                          </div>
-                        )
-                      )
-                    ) : (
-                      <button
-                        type="button"
-                        onClick={() => arrayHelpers.push("")}
-                      >
-                        Add
-                      </button>
-                    )}
-                  </div>
-                )}
-              />
-            </div>
-            <div className="form-group">
-              <label
-                className="form-control-label"
-                htmlFor="study_studyReference"
-              >
-                studyReference
+              <label className="form-control-label" htmlFor="study_reference">
+                reference
               </label>
               <input
-                name="studyReference"
-                id="study_studyReference"
-                value={values.studyReference ?? ""}
+                name="reference"
+                id="study_reference"
+                value={values.reference ?? ""}
                 type="text"
                 placeholder=""
                 className={`form-control${
-                  errors.studyReference && touched.studyReference
-                    ? " is-invalid"
-                    : ""
+                  errors.reference && touched.reference ? " is-invalid" : ""
                 }`}
                 aria-invalid={
-                  errors.studyReference && touched.studyReference
-                    ? "true"
-                    : undefined
+                  errors.reference && touched.reference ? "true" : undefined
                 }
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -204,31 +158,24 @@ export const Form: FunctionComponent<Props> = ({ study }) => {
               <ErrorMessage
                 className="invalid-feedback"
                 component="div"
-                name="studyReference"
+                name="reference"
               />
             </div>
             <div className="form-group">
-              <label
-                className="form-control-label"
-                htmlFor="study_study_reference"
-              >
-                study_reference
+              <label className="form-control-label" htmlFor="study_claim">
+                claim
               </label>
               <input
-                name="study_reference"
-                id="study_study_reference"
-                value={values.study_reference ?? ""}
+                name="claim"
+                id="study_claim"
+                value={values.claim ?? ""}
                 type="text"
                 placeholder=""
                 className={`form-control${
-                  errors.study_reference && touched.study_reference
-                    ? " is-invalid"
-                    : ""
+                  errors.claim && touched.claim ? " is-invalid" : ""
                 }`}
                 aria-invalid={
-                  errors.study_reference && touched.study_reference
-                    ? "true"
-                    : undefined
+                  errors.claim && touched.claim ? "true" : undefined
                 }
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -236,7 +183,7 @@ export const Form: FunctionComponent<Props> = ({ study }) => {
               <ErrorMessage
                 className="invalid-feedback"
                 component="div"
-                name="study_reference"
+                name="claim"
               />
             </div>
             {status && status.msg && (

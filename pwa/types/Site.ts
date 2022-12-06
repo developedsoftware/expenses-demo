@@ -6,9 +6,8 @@ export class Site implements Item {
   constructor(
     _id?: string,
     public name?: string,
-    public patientStudySiteVisits?: string[],
-    public siteReference?: string,
-    public site_reference?: string
+    public reference?: string,
+    public claims?: string[]
   ) {
     this["@id"] = _id;
   }

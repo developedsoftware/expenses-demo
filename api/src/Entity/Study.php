@@ -4,8 +4,6 @@ namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\StudyRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: StudyRepository::class)]
@@ -18,34 +16,18 @@ class Study
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $study_reference = null;
-
-    #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\OneToMany(mappedBy: 'study', targetEntity: PatientStudySiteVisit::class, orphanRemoval: true)]
-    private Collection $patientStudySiteVisits;
+    #[ORM\Column(length: 255)]
+    private ?string $reference = null;
 
-    public function __construct()
-    {
-        $this->patientStudySiteVisits = new ArrayCollection();
-    }
+    #[ORM\ManyToOne(inversedBy: 'studyId')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Claim $claim = null;
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getStudyReference(): ?string
-    {
-        return $this->study_reference;
-    }
-
-    public function setStudyReference(string $study_reference): self
-    {
-        $this->study_reference = $study_reference;
-
-        return $this;
     }
 
     public function getName(): ?string
@@ -60,32 +42,26 @@ class Study
         return $this;
     }
 
-    /**
-     * @return Collection<int, PatientStudySiteVisit>
-     */
-    public function getPatientStudySiteVisits(): Collection
+    public function getReference(): ?string
     {
-        return $this->patientStudySiteVisits;
+        return $this->reference;
     }
 
-    public function addPatientStudySiteVisit(PatientStudySiteVisit $patientStudySiteVisit): self
+    public function setReference(string $reference): self
     {
-        if (!$this->patientStudySiteVisits->contains($patientStudySiteVisit)) {
-            $this->patientStudySiteVisits->add($patientStudySiteVisit);
-            $patientStudySiteVisit->setStudyId($this);
-        }
+        $this->reference = $reference;
 
         return $this;
     }
 
-    public function removePatientStudySiteVisit(PatientStudySiteVisit $patientStudySiteVisit): self
+    public function getClaim(): ?Claim
     {
-        if ($this->patientStudySiteVisits->removeElement($patientStudySiteVisit)) {
-            // set the owning side to null (unless already changed)
-            if ($patientStudySiteVisit->getStudyId() === $this) {
-                $patientStudySiteVisit->setStudyId(null);
-            }
-        }
+        return $this->claim;
+    }
+
+    public function setClaim(?Claim $claim): self
+    {
+        $this->claim = $claim;
 
         return $this;
     }

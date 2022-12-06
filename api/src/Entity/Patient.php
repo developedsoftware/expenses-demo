@@ -17,8 +17,8 @@ class Patient
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $registration = null;
+    #[ORM\Column]
+    private ?int $registrationNumber = null;
 
     #[ORM\Column(length: 255)]
     private ?string $email = null;
@@ -27,28 +27,25 @@ class Patient
     private ?string $password = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $first_name = null;
+    private ?string $firstName = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $last_name = null;
+    private ?string $lastName = null;
 
-    #[ORM\OneToMany(mappedBy: 'patient', targetEntity: PatientAddress::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'patientId', targetEntity: PatientAddress::class, orphanRemoval: true)]
     private Collection $patientAddresses;
 
-    #[ORM\OneToOne(mappedBy: 'patient', cascade: ['persist', 'remove'])]
-    private ?PatientStripeAccount $patientStripeAccount = null;
+    #[ORM\OneToMany(mappedBy: 'patientId', targetEntity: PatientPaymentGateway::class, orphanRemoval: true)]
+    private Collection $patientPaymentGateways;
 
-    #[ORM\OneToMany(mappedBy: 'patient', targetEntity: PatientStudySiteVisit::class, orphanRemoval: true)]
-    private Collection $patientStudySiteVisits;
-
-    #[ORM\OneToMany(mappedBy: 'patient', targetEntity: ExpenseClaim::class)]
-    private Collection $expenseClaims;
+    #[ORM\OneToMany(mappedBy: 'patientId', targetEntity: Claim::class, orphanRemoval: true)]
+    private Collection $claims;
 
     public function __construct()
     {
         $this->patientAddresses = new ArrayCollection();
-        $this->patientStudySiteVisits = new ArrayCollection();
-        $this->expenseClaims = new ArrayCollection();
+        $this->patientPaymentGateways = new ArrayCollection();
+        $this->claims = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -56,14 +53,14 @@ class Patient
         return $this->id;
     }
 
-    public function getRegistrationId(): ?int
+    public function getRegistrationNumber(): ?int
     {
-        return $this->registration;
+        return $this->registrationNumber;
     }
 
-    public function setRegistrationId(?int $registration): self
+    public function setRegistrationNumber(int $registrationNumber): self
     {
-        $this->registration = $registration;
+        $this->registrationNumber = $registrationNumber;
 
         return $this;
     }
@@ -94,24 +91,24 @@ class Patient
 
     public function getFirstName(): ?string
     {
-        return $this->first_name;
+        return $this->firstName;
     }
 
-    public function setFirstName(string $first_name): self
+    public function setFirstName(string $firstName): self
     {
-        $this->first_name = $first_name;
+        $this->firstName = $firstName;
 
         return $this;
     }
 
     public function getLastName(): ?string
     {
-        return $this->last_name;
+        return $this->lastName;
     }
 
-    public function setLastName(string $last_name): self
+    public function setLastName(string $lastName): self
     {
-        $this->last_name = $last_name;
+        $this->lastName = $lastName;
 
         return $this;
     }
@@ -146,52 +143,30 @@ class Patient
         return $this;
     }
 
-    public function getPatientStripeAccount(): ?PatientStripeAccount
-    {
-        return $this->patientStripeAccount;
-    }
-
-    public function setPatientStripeAccount(?PatientStripeAccount $patientStripeAccount): self
-    {
-        // unset the owning side of the relation if necessary
-        if ($patientStripeAccount === null && $this->patientStripeAccount !== null) {
-            $this->patientStripeAccount->setPatientId(null);
-        }
-
-        // set the owning side of the relation if necessary
-        if ($patientStripeAccount !== null && $patientStripeAccount->getPatientId() !== $this) {
-            $patientStripeAccount->setPatientId($this);
-        }
-
-        $this->patientStripeAccount = $patientStripeAccount;
-
-        return $this;
-    }
-
     /**
-     * @return Collection<int, PatientStudySiteVisit>
+     * @return Collection<int, PatientPaymentGateway>
      */
-    public function getPatientStudySiteVisits(): Collection
+    public function getPatientPaymentGateways(): Collection
     {
-        return $this->patientStudySiteVisits;
+        return $this->patientPaymentGateways;
     }
 
-    public function addPatientStudySiteVisit(PatientStudySiteVisit $patientStudySiteVisit): self
+    public function addPatientPaymentGateway(PatientPaymentGateway $patientPaymentGateway): self
     {
-        if (!$this->patientStudySiteVisits->contains($patientStudySiteVisit)) {
-            $this->patientStudySiteVisits->add($patientStudySiteVisit);
-            $patientStudySiteVisit->setPatientId($this);
+        if (!$this->patientPaymentGateways->contains($patientPaymentGateway)) {
+            $this->patientPaymentGateways->add($patientPaymentGateway);
+            $patientPaymentGateway->setPatientId($this);
         }
 
         return $this;
     }
 
-    public function removePatientStudySiteVisit(PatientStudySiteVisit $patientStudySiteVisit): self
+    public function removePatientPaymentGateway(PatientPaymentGateway $patientPaymentGateway): self
     {
-        if ($this->patientStudySiteVisits->removeElement($patientStudySiteVisit)) {
+        if ($this->patientPaymentGateways->removeElement($patientPaymentGateway)) {
             // set the owning side to null (unless already changed)
-            if ($patientStudySiteVisit->getPatientId() === $this) {
-                $patientStudySiteVisit->setPatientId(null);
+            if ($patientPaymentGateway->getPatientId() === $this) {
+                $patientPaymentGateway->setPatientId(null);
             }
         }
 
@@ -199,29 +174,29 @@ class Patient
     }
 
     /**
-     * @return Collection<int, ExpenseClaim>
+     * @return Collection<int, Claim>
      */
-    public function getExpenseClaims(): Collection
+    public function getClaims(): Collection
     {
-        return $this->expenseClaims;
+        return $this->claims;
     }
 
-    public function addExpenseClaim(ExpenseClaim $expenseClaim): self
+    public function addClaim(Claim $claim): self
     {
-        if (!$this->expenseClaims->contains($expenseClaim)) {
-            $this->expenseClaims->add($expenseClaim);
-            $expenseClaim->setPatientId($this);
+        if (!$this->claims->contains($claim)) {
+            $this->claims->add($claim);
+            $claim->setPatientId($this);
         }
 
         return $this;
     }
 
-    public function removeExpenseClaim(ExpenseClaim $expenseClaim): self
+    public function removeClaim(Claim $claim): self
     {
-        if ($this->expenseClaims->removeElement($expenseClaim)) {
+        if ($this->claims->removeElement($claim)) {
             // set the owning side to null (unless already changed)
-            if ($expenseClaim->getPatientId() === $this) {
-                $expenseClaim->setPatientId(null);
+            if ($claim->getPatientId() === $this) {
+                $claim->setPatientId(null);
             }
         }
 

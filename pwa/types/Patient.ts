@@ -5,17 +5,14 @@ export class Patient implements Item {
 
   constructor(
     _id?: string,
+    public registrationNumber?: number,
     public email?: string,
     public password?: string,
-    public patientAddresses?: string[],
-    public patientStripeAccount?: string,
-    public patientStudySiteVisits?: string[],
-    public expenseClaims?: string[],
-    public registrationId?: number,
     public firstName?: string,
     public lastName?: string,
-    public first_name?: string,
-    public last_name?: string
+    public patientAddresses?: string[],
+    public patientPaymentGateways?: string[],
+    public claims?: string[]
   ) {
     this["@id"] = _id;
   }

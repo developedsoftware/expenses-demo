@@ -20,9 +20,8 @@ export const List: FunctionComponent<Props> = ({ sites }) => (
         <tr>
           <th>id</th>
           <th>name</th>
-          <th>patientStudySiteVisits</th>
-          <th>siteReference</th>
-          <th>site_reference</th>
+          <th>reference</th>
+          <th>claims</th>
           <th />
         </tr>
       </thead>
@@ -42,16 +41,15 @@ export const List: FunctionComponent<Props> = ({ sites }) => (
                     />
                   </th>
                   <td>{site["name"]}</td>
+                  <td>{site["reference"]}</td>
                   <td>
                     <ReferenceLinks
-                      items={site["patientStudySiteVisits"].map((ref: any) => ({
-                        href: getPath(ref, "/patientstudysitevisits/[id]"),
+                      items={site["claims"].map((ref: any) => ({
+                        href: getPath(ref, "/claims/[id]"),
                         name: ref,
                       }))}
                     />
                   </td>
-                  <td>{site["siteReference"]}</td>
-                  <td>{site["site_reference"]}</td>
                   <td>
                     <Link href={getPath(site["@id"], "/sites/[id]")}>
                       <a>

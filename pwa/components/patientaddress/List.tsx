@@ -20,20 +20,11 @@ export const List: FunctionComponent<Props> = ({ patientaddresss }) => (
         <tr>
           <th>id</th>
           <th>patientId</th>
-          <th>addressLine1</th>
-          <th>addressLine2</th>
-          <th>addressLine3</th>
-          <th>addressLine4</th>
+          <th>line1</th>
+          <th>line2</th>
+          <th>line3</th>
           <th>areaCode</th>
           <th>countryCode</th>
-          <th>isPrimary</th>
-          <th>address_line_1</th>
-          <th>address_line_2</th>
-          <th>address_line_3</th>
-          <th>address_line_4</th>
-          <th>area_code</th>
-          <th>country_code</th>
-          <th>is_primary</th>
           <th />
         </tr>
       </thead>
@@ -66,20 +57,11 @@ export const List: FunctionComponent<Props> = ({ patientaddresss }) => (
                       }}
                     />
                   </td>
-                  <td>{patientaddress["addressLine1"]}</td>
-                  <td>{patientaddress["addressLine2"]}</td>
-                  <td>{patientaddress["addressLine3"]}</td>
-                  <td>{patientaddress["addressLine4"]}</td>
+                  <td>{patientaddress["line1"]}</td>
+                  <td>{patientaddress["line2"]}</td>
+                  <td>{patientaddress["line3"]}</td>
                   <td>{patientaddress["areaCode"]}</td>
                   <td>{patientaddress["countryCode"]}</td>
-                  <td>{patientaddress["isPrimary"]}</td>
-                  <td>{patientaddress["address_line_1"]}</td>
-                  <td>{patientaddress["address_line_2"]}</td>
-                  <td>{patientaddress["address_line_3"]}</td>
-                  <td>{patientaddress["address_line_4"]}</td>
-                  <td>{patientaddress["area_code"]}</td>
-                  <td>{patientaddress["country_code"]}</td>
-                  <td>{patientaddress["is_primary"]}</td>
                   <td>
                     <Link
                       href={getPath(

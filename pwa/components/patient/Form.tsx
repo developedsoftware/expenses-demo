@@ -114,6 +114,38 @@ export const Form: FunctionComponent<Props> = ({ patient }) => {
         }) => (
           <form onSubmit={handleSubmit}>
             <div className="form-group">
+              <label
+                className="form-control-label"
+                htmlFor="patient_registrationNumber"
+              >
+                registrationNumber
+              </label>
+              <input
+                name="registrationNumber"
+                id="patient_registrationNumber"
+                value={values.registrationNumber ?? ""}
+                type="number"
+                placeholder=""
+                className={`form-control${
+                  errors.registrationNumber && touched.registrationNumber
+                    ? " is-invalid"
+                    : ""
+                }`}
+                aria-invalid={
+                  errors.registrationNumber && touched.registrationNumber
+                    ? "true"
+                    : undefined
+                }
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              <ErrorMessage
+                className="invalid-feedback"
+                component="div"
+                name="registrationNumber"
+              />
+            </div>
+            <div className="form-group">
               <label className="form-control-label" htmlFor="patient_email">
                 email
               </label>
@@ -161,184 +193,6 @@ export const Form: FunctionComponent<Props> = ({ patient }) => {
                 className="invalid-feedback"
                 component="div"
                 name="password"
-              />
-            </div>
-            <div className="form-group">
-              <div className="form-control-label">patientAddresses</div>
-              <FieldArray
-                name="patientAddresses"
-                render={(arrayHelpers) => (
-                  <div id="patient_patientAddresses">
-                    {values.patientAddresses &&
-                    values.patientAddresses.length > 0 ? (
-                      values.patientAddresses.map(
-                        (item: any, index: number) => (
-                          <div key={index}>
-                            <Field name={`patientAddresses.${index}`} />
-                            <button
-                              type="button"
-                              onClick={() => arrayHelpers.remove(index)}
-                            >
-                              -
-                            </button>
-                            <button
-                              type="button"
-                              onClick={() => arrayHelpers.insert(index, "")}
-                            >
-                              +
-                            </button>
-                          </div>
-                        )
-                      )
-                    ) : (
-                      <button
-                        type="button"
-                        onClick={() => arrayHelpers.push("")}
-                      >
-                        Add
-                      </button>
-                    )}
-                  </div>
-                )}
-              />
-            </div>
-            <div className="form-group">
-              <label
-                className="form-control-label"
-                htmlFor="patient_patientStripeAccount"
-              >
-                patientStripeAccount
-              </label>
-              <input
-                name="patientStripeAccount"
-                id="patient_patientStripeAccount"
-                value={values.patientStripeAccount ?? ""}
-                type="text"
-                placeholder=""
-                className={`form-control${
-                  errors.patientStripeAccount && touched.patientStripeAccount
-                    ? " is-invalid"
-                    : ""
-                }`}
-                aria-invalid={
-                  errors.patientStripeAccount && touched.patientStripeAccount
-                    ? "true"
-                    : undefined
-                }
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              <ErrorMessage
-                className="invalid-feedback"
-                component="div"
-                name="patientStripeAccount"
-              />
-            </div>
-            <div className="form-group">
-              <div className="form-control-label">patientStudySiteVisits</div>
-              <FieldArray
-                name="patientStudySiteVisits"
-                render={(arrayHelpers) => (
-                  <div id="patient_patientStudySiteVisits">
-                    {values.patientStudySiteVisits &&
-                    values.patientStudySiteVisits.length > 0 ? (
-                      values.patientStudySiteVisits.map(
-                        (item: any, index: number) => (
-                          <div key={index}>
-                            <Field name={`patientStudySiteVisits.${index}`} />
-                            <button
-                              type="button"
-                              onClick={() => arrayHelpers.remove(index)}
-                            >
-                              -
-                            </button>
-                            <button
-                              type="button"
-                              onClick={() => arrayHelpers.insert(index, "")}
-                            >
-                              +
-                            </button>
-                          </div>
-                        )
-                      )
-                    ) : (
-                      <button
-                        type="button"
-                        onClick={() => arrayHelpers.push("")}
-                      >
-                        Add
-                      </button>
-                    )}
-                  </div>
-                )}
-              />
-            </div>
-            <div className="form-group">
-              <div className="form-control-label">expenseClaims</div>
-              <FieldArray
-                name="expenseClaims"
-                render={(arrayHelpers) => (
-                  <div id="patient_expenseClaims">
-                    {values.expenseClaims && values.expenseClaims.length > 0 ? (
-                      values.expenseClaims.map((item: any, index: number) => (
-                        <div key={index}>
-                          <Field name={`expenseClaims.${index}`} />
-                          <button
-                            type="button"
-                            onClick={() => arrayHelpers.remove(index)}
-                          >
-                            -
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => arrayHelpers.insert(index, "")}
-                          >
-                            +
-                          </button>
-                        </div>
-                      ))
-                    ) : (
-                      <button
-                        type="button"
-                        onClick={() => arrayHelpers.push("")}
-                      >
-                        Add
-                      </button>
-                    )}
-                  </div>
-                )}
-              />
-            </div>
-            <div className="form-group">
-              <label
-                className="form-control-label"
-                htmlFor="patient_registrationId"
-              >
-                registrationId
-              </label>
-              <input
-                name="registrationId"
-                id="patient_registrationId"
-                value={values.registrationId ?? ""}
-                type="number"
-                placeholder=""
-                className={`form-control${
-                  errors.registrationId && touched.registrationId
-                    ? " is-invalid"
-                    : ""
-                }`}
-                aria-invalid={
-                  errors.registrationId && touched.registrationId
-                    ? "true"
-                    : undefined
-                }
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              <ErrorMessage
-                className="invalid-feedback"
-                component="div"
-                name="registrationId"
               />
             </div>
             <div className="form-group">
@@ -392,56 +246,117 @@ export const Form: FunctionComponent<Props> = ({ patient }) => {
               />
             </div>
             <div className="form-group">
-              <label
-                className="form-control-label"
-                htmlFor="patient_first_name"
-              >
-                first_name
-              </label>
-              <input
-                name="first_name"
-                id="patient_first_name"
-                value={values.first_name ?? ""}
-                type="text"
-                placeholder=""
-                className={`form-control${
-                  errors.first_name && touched.first_name ? " is-invalid" : ""
-                }`}
-                aria-invalid={
-                  errors.first_name && touched.first_name ? "true" : undefined
-                }
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              <ErrorMessage
-                className="invalid-feedback"
-                component="div"
-                name="first_name"
+              <div className="form-control-label">patientAddresses</div>
+              <FieldArray
+                name="patientAddresses"
+                render={(arrayHelpers) => (
+                  <div id="patient_patientAddresses">
+                    {values.patientAddresses &&
+                    values.patientAddresses.length > 0 ? (
+                      values.patientAddresses.map(
+                        (item: any, index: number) => (
+                          <div key={index}>
+                            <Field name={`patientAddresses.${index}`} />
+                            <button
+                              type="button"
+                              onClick={() => arrayHelpers.remove(index)}
+                            >
+                              -
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => arrayHelpers.insert(index, "")}
+                            >
+                              +
+                            </button>
+                          </div>
+                        )
+                      )
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => arrayHelpers.push("")}
+                      >
+                        Add
+                      </button>
+                    )}
+                  </div>
+                )}
               />
             </div>
             <div className="form-group">
-              <label className="form-control-label" htmlFor="patient_last_name">
-                last_name
-              </label>
-              <input
-                name="last_name"
-                id="patient_last_name"
-                value={values.last_name ?? ""}
-                type="text"
-                placeholder=""
-                className={`form-control${
-                  errors.last_name && touched.last_name ? " is-invalid" : ""
-                }`}
-                aria-invalid={
-                  errors.last_name && touched.last_name ? "true" : undefined
-                }
-                onChange={handleChange}
-                onBlur={handleBlur}
+              <div className="form-control-label">patientPaymentGateways</div>
+              <FieldArray
+                name="patientPaymentGateways"
+                render={(arrayHelpers) => (
+                  <div id="patient_patientPaymentGateways">
+                    {values.patientPaymentGateways &&
+                    values.patientPaymentGateways.length > 0 ? (
+                      values.patientPaymentGateways.map(
+                        (item: any, index: number) => (
+                          <div key={index}>
+                            <Field name={`patientPaymentGateways.${index}`} />
+                            <button
+                              type="button"
+                              onClick={() => arrayHelpers.remove(index)}
+                            >
+                              -
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => arrayHelpers.insert(index, "")}
+                            >
+                              +
+                            </button>
+                          </div>
+                        )
+                      )
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => arrayHelpers.push("")}
+                      >
+                        Add
+                      </button>
+                    )}
+                  </div>
+                )}
               />
-              <ErrorMessage
-                className="invalid-feedback"
-                component="div"
-                name="last_name"
+            </div>
+            <div className="form-group">
+              <div className="form-control-label">claims</div>
+              <FieldArray
+                name="claims"
+                render={(arrayHelpers) => (
+                  <div id="patient_claims">
+                    {values.claims && values.claims.length > 0 ? (
+                      values.claims.map((item: any, index: number) => (
+                        <div key={index}>
+                          <Field name={`claims.${index}`} />
+                          <button
+                            type="button"
+                            onClick={() => arrayHelpers.remove(index)}
+                          >
+                            -
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => arrayHelpers.insert(index, "")}
+                          >
+                            +
+                          </button>
+                        </div>
+                      ))
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => arrayHelpers.push("")}
+                      >
+                        Add
+                      </button>
+                    )}
+                  </div>
+                )}
               />
             </div>
             {status && status.msg && (

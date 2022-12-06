@@ -137,32 +137,54 @@ export const Form: FunctionComponent<Props> = ({ site }) => {
               />
             </div>
             <div className="form-group">
-              <div className="form-control-label">patientStudySiteVisits</div>
+              <label className="form-control-label" htmlFor="site_reference">
+                reference
+              </label>
+              <input
+                name="reference"
+                id="site_reference"
+                value={values.reference ?? ""}
+                type="text"
+                placeholder=""
+                className={`form-control${
+                  errors.reference && touched.reference ? " is-invalid" : ""
+                }`}
+                aria-invalid={
+                  errors.reference && touched.reference ? "true" : undefined
+                }
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              <ErrorMessage
+                className="invalid-feedback"
+                component="div"
+                name="reference"
+              />
+            </div>
+            <div className="form-group">
+              <div className="form-control-label">claims</div>
               <FieldArray
-                name="patientStudySiteVisits"
+                name="claims"
                 render={(arrayHelpers) => (
-                  <div id="site_patientStudySiteVisits">
-                    {values.patientStudySiteVisits &&
-                    values.patientStudySiteVisits.length > 0 ? (
-                      values.patientStudySiteVisits.map(
-                        (item: any, index: number) => (
-                          <div key={index}>
-                            <Field name={`patientStudySiteVisits.${index}`} />
-                            <button
-                              type="button"
-                              onClick={() => arrayHelpers.remove(index)}
-                            >
-                              -
-                            </button>
-                            <button
-                              type="button"
-                              onClick={() => arrayHelpers.insert(index, "")}
-                            >
-                              +
-                            </button>
-                          </div>
-                        )
-                      )
+                  <div id="site_claims">
+                    {values.claims && values.claims.length > 0 ? (
+                      values.claims.map((item: any, index: number) => (
+                        <div key={index}>
+                          <Field name={`claims.${index}`} />
+                          <button
+                            type="button"
+                            onClick={() => arrayHelpers.remove(index)}
+                          >
+                            -
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => arrayHelpers.insert(index, "")}
+                          >
+                            +
+                          </button>
+                        </div>
+                      ))
                     ) : (
                       <button
                         type="button"
@@ -173,70 +195,6 @@ export const Form: FunctionComponent<Props> = ({ site }) => {
                     )}
                   </div>
                 )}
-              />
-            </div>
-            <div className="form-group">
-              <label
-                className="form-control-label"
-                htmlFor="site_siteReference"
-              >
-                siteReference
-              </label>
-              <input
-                name="siteReference"
-                id="site_siteReference"
-                value={values.siteReference ?? ""}
-                type="text"
-                placeholder=""
-                className={`form-control${
-                  errors.siteReference && touched.siteReference
-                    ? " is-invalid"
-                    : ""
-                }`}
-                aria-invalid={
-                  errors.siteReference && touched.siteReference
-                    ? "true"
-                    : undefined
-                }
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              <ErrorMessage
-                className="invalid-feedback"
-                component="div"
-                name="siteReference"
-              />
-            </div>
-            <div className="form-group">
-              <label
-                className="form-control-label"
-                htmlFor="site_site_reference"
-              >
-                site_reference
-              </label>
-              <input
-                name="site_reference"
-                id="site_site_reference"
-                value={values.site_reference ?? ""}
-                type="text"
-                placeholder=""
-                className={`form-control${
-                  errors.site_reference && touched.site_reference
-                    ? " is-invalid"
-                    : ""
-                }`}
-                aria-invalid={
-                  errors.site_reference && touched.site_reference
-                    ? "true"
-                    : undefined
-                }
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              <ErrorMessage
-                className="invalid-feedback"
-                component="div"
-                name="site_reference"
               />
             </div>
             {status && status.msg && (

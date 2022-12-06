@@ -3,7 +3,6 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import Head from "next/head";
 
-import ReferenceLinks from "../common/ReferenceLinks";
 import { fetch, getPath } from "../../utils/dataAccess";
 import { ExpenseType } from "../../types/ExpenseType";
 
@@ -50,17 +49,6 @@ export const Show: FunctionComponent<Props> = ({ expensetype, text }) => {
           <tr>
             <th scope="row">name</th>
             <td>{expensetype["name"]}</td>
-          </tr>
-          <tr>
-            <th scope="row">expenseClaimItems</th>
-            <td>
-              <ReferenceLinks
-                items={expensetype["expenseClaimItems"].map((ref: any) => ({
-                  href: getPath(ref, "/expenseclaimitems/[id]"),
-                  name: ref,
-                }))}
-              />
-            </td>
           </tr>
         </tbody>
       </table>

@@ -52,23 +52,19 @@ export const Show: FunctionComponent<Props> = ({ study, text }) => {
             <td>{study["name"]}</td>
           </tr>
           <tr>
-            <th scope="row">patientStudySiteVisits</th>
+            <th scope="row">reference</th>
+            <td>{study["reference"]}</td>
+          </tr>
+          <tr>
+            <th scope="row">claim</th>
             <td>
               <ReferenceLinks
-                items={study["patientStudySiteVisits"].map((ref: any) => ({
-                  href: getPath(ref, "/patientstudysitevisits/[id]"),
-                  name: ref,
-                }))}
+                items={{
+                  href: getPath(study["claim"], "/claims/[id]"),
+                  name: study["claim"],
+                }}
               />
             </td>
-          </tr>
-          <tr>
-            <th scope="row">studyReference</th>
-            <td>{study["studyReference"]}</td>
-          </tr>
-          <tr>
-            <th scope="row">study_reference</th>
-            <td>{study["study_reference"]}</td>
           </tr>
         </tbody>
       </table>

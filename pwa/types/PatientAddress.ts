@@ -6,20 +6,11 @@ export class PatientAddress implements Item {
   constructor(
     _id?: string,
     public patientId?: string,
-    public addressLine1?: string,
-    public addressLine2?: string,
-    public addressLine3?: string,
-    public addressLine4?: string,
+    public line1?: string,
+    public line2?: string,
+    public line3?: string,
     public areaCode?: string,
-    public countryCode?: string,
-    public isPrimary?: boolean,
-    public address_line_1?: string,
-    public address_line_2?: string,
-    public address_line_3?: string,
-    public address_line_4?: string,
-    public area_code?: string,
-    public country_code?: string,
-    public is_primary?: boolean
+    public countryCode?: string
   ) {
     this["@id"] = _id;
   }

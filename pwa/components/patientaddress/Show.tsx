@@ -59,20 +59,16 @@ export const Show: FunctionComponent<Props> = ({ patientaddress, text }) => {
             </td>
           </tr>
           <tr>
-            <th scope="row">addressLine1</th>
-            <td>{patientaddress["addressLine1"]}</td>
+            <th scope="row">line1</th>
+            <td>{patientaddress["line1"]}</td>
           </tr>
           <tr>
-            <th scope="row">addressLine2</th>
-            <td>{patientaddress["addressLine2"]}</td>
+            <th scope="row">line2</th>
+            <td>{patientaddress["line2"]}</td>
           </tr>
           <tr>
-            <th scope="row">addressLine3</th>
-            <td>{patientaddress["addressLine3"]}</td>
-          </tr>
-          <tr>
-            <th scope="row">addressLine4</th>
-            <td>{patientaddress["addressLine4"]}</td>
+            <th scope="row">line3</th>
+            <td>{patientaddress["line3"]}</td>
           </tr>
           <tr>
             <th scope="row">areaCode</th>
@@ -81,38 +77,6 @@ export const Show: FunctionComponent<Props> = ({ patientaddress, text }) => {
           <tr>
             <th scope="row">countryCode</th>
             <td>{patientaddress["countryCode"]}</td>
-          </tr>
-          <tr>
-            <th scope="row">isPrimary</th>
-            <td>{patientaddress["isPrimary"]}</td>
-          </tr>
-          <tr>
-            <th scope="row">address_line_1</th>
-            <td>{patientaddress["address_line_1"]}</td>
-          </tr>
-          <tr>
-            <th scope="row">address_line_2</th>
-            <td>{patientaddress["address_line_2"]}</td>
-          </tr>
-          <tr>
-            <th scope="row">address_line_3</th>
-            <td>{patientaddress["address_line_3"]}</td>
-          </tr>
-          <tr>
-            <th scope="row">address_line_4</th>
-            <td>{patientaddress["address_line_4"]}</td>
-          </tr>
-          <tr>
-            <th scope="row">area_code</th>
-            <td>{patientaddress["area_code"]}</td>
-          </tr>
-          <tr>
-            <th scope="row">country_code</th>
-            <td>{patientaddress["country_code"]}</td>
-          </tr>
-          <tr>
-            <th scope="row">is_primary</th>
-            <td>{patientaddress["is_primary"]}</td>
           </tr>
         </tbody>
       </table>
