@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\StudyRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: StudyRepository::class)]
@@ -21,9 +23,13 @@ class Study
     #[ORM\Column(length: 255)]
     private ?string $reference = null;
 
-    #[ORM\ManyToOne(inversedBy: 'studyId')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Claim $claim = null;
+    #[ORM\OneToMany(mappedBy: 'study', targetEntity: Claim::class, orphanRemoval: true)]
+    private Collection $claims;
+
+    public function __construct()
+    {
+        $this->claims = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -54,14 +60,32 @@ class Study
         return $this;
     }
 
-    public function getClaim(): ?Claim
+    /**
+     * @return Collection<int, Claim>
+     */
+    public function getClaims(): Collection
     {
-        return $this->claim;
+        return $this->claims;
     }
 
-    public function setClaim(?Claim $claim): self
+    public function addClaim(Claim $claim): self
     {
-        $this->claim = $claim;
+        if (!$this->claims->contains($claim)) {
+            $this->claims->add($claim);
+            $claim->setStudy($this);
+        }
+
+        return $this;
+    }
+
+    public function removeClaim(Claim $claim): self
+    {
+        if ($this->claims->removeElement($claim)) {
+            // set the owning side to null (unless already changed)
+            if ($claim->getStudy() === $this) {
+                $claim->setStudy(null);
+            }
+        }
 
         return $this;
     }

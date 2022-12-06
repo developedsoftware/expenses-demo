@@ -20,13 +20,13 @@ class ClaimItem
 
     #[ORM\ManyToOne(inversedBy: 'claimItems')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Claim $claimId = null;
+    private ?Claim $claim = null;
 
     #[ORM\ManyToOne]
-    private ?ExpenseType $expenseTypeId = null;
+    private ?ExpenseType $expenseType = null;
 
     #[ORM\ManyToOne]
-    private ?Currency $currencyId = null;
+    private ?Currency $currency = null;
 
     #[ORM\Column(nullable: true)]
     private ?int $amount = null;
@@ -37,7 +37,7 @@ class ClaimItem
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $claimTimestamp = null;
 
-    #[ORM\OneToMany(mappedBy: 'claimItemId', targetEntity: ClaimItemReceipt::class)]
+    #[ORM\OneToMany(mappedBy: 'claimItem', targetEntity: ClaimItemReceipt::class)]
     private Collection $claimItemReceipts;
 
     public function __construct()
@@ -50,38 +50,38 @@ class ClaimItem
         return $this->id;
     }
 
-    public function getClaimId(): ?Claim
+    public function getClaim(): ?Claim
     {
-        return $this->claimId;
+        return $this->claim;
     }
 
-    public function setClaimId(?Claim $claimId): self
+    public function setClaim(?Claim $claim): self
     {
-        $this->claimId = $claimId;
+        $this->claim = $claim;
 
         return $this;
     }
 
-    public function getExpenseTypeId(): ?ExpenseType
+    public function getExpenseType(): ?ExpenseType
     {
-        return $this->expenseTypeId;
+        return $this->expenseType;
     }
 
-    public function setExpenseTypeId(?ExpenseType $expenseTypeId): self
+    public function setExpenseType(?ExpenseType $expenseType): self
     {
-        $this->expenseTypeId = $expenseTypeId;
+        $this->expenseType = $expenseType;
 
         return $this;
     }
 
-    public function getCurrencyId(): ?Currency
+    public function getCurrency(): ?Currency
     {
-        return $this->currencyId;
+        return $this->currency;
     }
 
-    public function setCurrencyId(?Currency $currencyId): self
+    public function setCurrency(?Currency $currency): self
     {
-        $this->currencyId = $currencyId;
+        $this->currency = $currency;
 
         return $this;
     }
@@ -134,7 +134,7 @@ class ClaimItem
     {
         if (!$this->claimItemReceipts->contains($claimItemReceipt)) {
             $this->claimItemReceipts->add($claimItemReceipt);
-            $claimItemReceipt->setClaimItemId($this);
+            $claimItemReceipt->setClaimItem($this);
         }
 
         return $this;
@@ -144,8 +144,8 @@ class ClaimItem
     {
         if ($this->claimItemReceipts->removeElement($claimItemReceipt)) {
             // set the owning side to null (unless already changed)
-            if ($claimItemReceipt->getClaimItemId() === $this) {
-                $claimItemReceipt->setClaimItemId(null);
+            if ($claimItemReceipt->getClaimItem() === $this) {
+                $claimItemReceipt->setClaimItem(null);
             }
         }
 

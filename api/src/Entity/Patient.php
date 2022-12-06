@@ -32,14 +32,15 @@ class Patient
     #[ORM\Column(length: 255)]
     private ?string $lastName = null;
 
-    #[ORM\OneToMany(mappedBy: 'patientId', targetEntity: PatientAddress::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'patient', targetEntity: PatientAddress::class, orphanRemoval: true)]
     private Collection $patientAddresses;
 
-    #[ORM\OneToMany(mappedBy: 'patientId', targetEntity: PatientPaymentGateway::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'patient', targetEntity: PatientPaymentGateway::class, orphanRemoval: true)]
     private Collection $patientPaymentGateways;
 
-    #[ORM\OneToMany(mappedBy: 'patientId', targetEntity: Claim::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'patient', targetEntity: Claim::class, orphanRemoval: true)]
     private Collection $claims;
+
 
     public function __construct()
     {
@@ -125,7 +126,7 @@ class Patient
     {
         if (!$this->patientAddresses->contains($patientAddress)) {
             $this->patientAddresses->add($patientAddress);
-            $patientAddress->setPatientId($this);
+            $patientAddress->setPatient($this);
         }
 
         return $this;
@@ -135,8 +136,8 @@ class Patient
     {
         if ($this->patientAddresses->removeElement($patientAddress)) {
             // set the owning side to null (unless already changed)
-            if ($patientAddress->getPatientId() === $this) {
-                $patientAddress->setPatientId(null);
+            if ($patientAddress->getPatient() === $this) {
+                $patientAddress->setPatient(null);
             }
         }
 
@@ -155,7 +156,7 @@ class Patient
     {
         if (!$this->patientPaymentGateways->contains($patientPaymentGateway)) {
             $this->patientPaymentGateways->add($patientPaymentGateway);
-            $patientPaymentGateway->setPatientId($this);
+            $patientPaymentGateway->setPatient($this);
         }
 
         return $this;
@@ -165,8 +166,8 @@ class Patient
     {
         if ($this->patientPaymentGateways->removeElement($patientPaymentGateway)) {
             // set the owning side to null (unless already changed)
-            if ($patientPaymentGateway->getPatientId() === $this) {
-                $patientPaymentGateway->setPatientId(null);
+            if ($patientPaymentGateway->getPatient() === $this) {
+                $patientPaymentGateway->setPatient(null);
             }
         }
 
@@ -185,7 +186,7 @@ class Patient
     {
         if (!$this->claims->contains($claim)) {
             $this->claims->add($claim);
-            $claim->setPatientId($this);
+            $claim->setPatient($this);
         }
 
         return $this;
@@ -195,8 +196,8 @@ class Patient
     {
         if ($this->claims->removeElement($claim)) {
             // set the owning side to null (unless already changed)
-            if ($claim->getPatientId() === $this) {
-                $claim->setPatientId(null);
+            if ($claim->getPatient() === $this) {
+                $claim->setPatient(null);
             }
         }
 

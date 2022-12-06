@@ -17,7 +17,7 @@ class PatientPaymentGateway
 
     #[ORM\ManyToOne(inversedBy: 'patientPaymentGateways')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Patient $patientId = null;
+    private ?Patient $patient = null;
 
     #[ORM\Column(nullable: true)]
     private array $data = [];
@@ -27,14 +27,14 @@ class PatientPaymentGateway
         return $this->id;
     }
 
-    public function getPatientId(): ?Patient
+    public function getPatient(): ?Patient
     {
-        return $this->patientId;
+        return $this->patient;
     }
 
-    public function setPatientId(?Patient $patientId): self
+    public function setPatient(?Patient $patient): self
     {
-        $this->patientId = $patientId;
+        $this->patient = $patient;
 
         return $this;
     }

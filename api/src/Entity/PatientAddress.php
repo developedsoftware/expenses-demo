@@ -17,7 +17,7 @@ class PatientAddress
 
     #[ORM\ManyToOne(inversedBy: 'patientAddresses')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Patient $patientId = null;
+    private ?Patient $patient = null;
 
     #[ORM\Column(length: 255)]
     private ?string $line1 = null;
@@ -39,14 +39,14 @@ class PatientAddress
         return $this->id;
     }
 
-    public function getPatientId(): ?Patient
+    public function getPatient(): ?Patient
     {
-        return $this->patientId;
+        return $this->patient;
     }
 
-    public function setPatientId(?Patient $patientId): self
+    public function setPatient(?Patient $patient): self
     {
-        $this->patientId = $patientId;
+        $this->patient = $patient;
 
         return $this;
     }

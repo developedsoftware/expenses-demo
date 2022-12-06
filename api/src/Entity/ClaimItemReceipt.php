@@ -17,7 +17,7 @@ class ClaimItemReceipt
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'claimItemReceipts')]
-    private ?ClaimItem $claimItemId = null;
+    private ?ClaimItem $claimItem = null;
 
     #[ORM\Column(type: Types::BLOB, nullable: true)]
     private $data = null;
@@ -27,14 +27,14 @@ class ClaimItemReceipt
         return $this->id;
     }
 
-    public function getClaimItemId(): ?ClaimItem
+    public function getClaimItem(): ?ClaimItem
     {
-        return $this->claimItemId;
+        return $this->claimItem;
     }
 
-    public function setClaimItemId(?ClaimItem $claimItemId): self
+    public function setClaimItem(?ClaimItem $claimItem): self
     {
-        $this->claimItemId = $claimItemId;
+        $this->claimItem = $claimItem;
 
         return $this;
     }

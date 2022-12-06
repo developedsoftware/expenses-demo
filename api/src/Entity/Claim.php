@@ -25,24 +25,22 @@ class Claim
 
     #[ORM\ManyToOne(inversedBy: 'claims')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Patient $patientId = null;
-
-    #[ORM\OneToMany(mappedBy: 'claim', targetEntity: Study::class)]
-    private Collection $studyId;
+    private ?Patient $patient = null;
 
     #[ORM\ManyToOne(inversedBy: 'claims')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Site $siteId = null;
+    private ?Study $study = null;
+
+    #[ORM\ManyToOne(inversedBy: 'claims')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Site $site = null;
 
     #[ORM\ManyToOne]
-    private ?ClaimStatus $claimStatusId = null;
-
-    #[ORM\OneToMany(mappedBy: 'claimId', targetEntity: ClaimItem::class)]
-    private Collection $claimItems;
+    private ?ClaimStatus $claimStatus = null;
 
     public function __construct()
     {
-        $this->studyId = new ArrayCollection();
+        $this->study = new ArrayCollection();
         $this->claimItems = new ArrayCollection();
     }
 
@@ -75,98 +73,50 @@ class Claim
         return $this;
     }
 
-    public function getPatientId(): ?Patient
+    public function getPatient(): ?Patient
     {
-        return $this->patientId;
+        return $this->patient;
     }
 
-    public function setPatientId(?Patient $patientId): self
+    public function setPatient(?Patient $patient): self
     {
-        $this->patientId = $patientId;
+        $this->patient = $patient;
 
         return $this;
     }
 
-    /**
-     * @return Collection<int, Study>
-     */
-    public function getStudyId(): Collection
+    public function getStudy(): ?Study
     {
-        return $this->studyId;
+        return $this->study;
     }
 
-    public function addStudyId(Study $studyId): self
+    public function setStudy(?Study $study): self
     {
-        if (!$this->studyId->contains($studyId)) {
-            $this->studyId->add($studyId);
-            $studyId->setClaim($this);
-        }
+        $this->study = $study;
 
         return $this;
     }
 
-    public function removeStudyId(Study $studyId): self
+    public function getSite(): ?Site
     {
-        if ($this->studyId->removeElement($studyId)) {
-            // set the owning side to null (unless already changed)
-            if ($studyId->getClaim() === $this) {
-                $studyId->setClaim(null);
-            }
-        }
+        return $this->site;
+    }
+
+    public function setSite(?Site $site): self
+    {
+        $this->site = $site;
 
         return $this;
     }
 
-    public function getSiteId(): ?Site
+    public function getClaimStatus(): ?ClaimStatus
     {
-        return $this->siteId;
+        return $this->claimStatus;
     }
 
-    public function setSiteId(?Site $siteId): self
+    public function setClaimStatus(?ClaimStatus $claimStatus): self
     {
-        $this->siteId = $siteId;
-
-        return $this;
-    }
-
-    public function getClaimStatusId(): ?ClaimStatus
-    {
-        return $this->claimStatusId;
-    }
-
-    public function setClaimStatusId(?ClaimStatus $claimStatusId): self
-    {
-        $this->claimStatusId = $claimStatusId;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, ClaimItem>
-     */
-    public function getClaimItems(): Collection
-    {
-        return $this->claimItems;
-    }
-
-    public function addClaimItem(ClaimItem $claimItem): self
-    {
-        if (!$this->claimItems->contains($claimItem)) {
-            $this->claimItems->add($claimItem);
-            $claimItem->setClaimId($this);
-        }
-
-        return $this;
-    }
-
-    public function removeClaimItem(ClaimItem $claimItem): self
-    {
-        if ($this->claimItems->removeElement($claimItem)) {
-            // set the owning side to null (unless already changed)
-            if ($claimItem->getClaimId() === $this) {
-                $claimItem->setClaimId(null);
-            }
-        }
+        $this->claimStatus = $claimStatus;
 
         return $this;
     }

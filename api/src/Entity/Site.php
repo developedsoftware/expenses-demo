@@ -23,7 +23,7 @@ class Site
     #[ORM\Column(length: 255)]
     private ?string $reference = null;
 
-    #[ORM\OneToMany(mappedBy: 'siteId', targetEntity: Claim::class)]
+    #[ORM\OneToMany(mappedBy: 'site', targetEntity: Claim::class)]
     private Collection $claims;
 
     public function __construct()
@@ -72,7 +72,7 @@ class Site
     {
         if (!$this->claims->contains($claim)) {
             $this->claims->add($claim);
-            $claim->setSiteId($this);
+            $claim->setSite($this);
         }
 
         return $this;
@@ -82,8 +82,8 @@ class Site
     {
         if ($this->claims->removeElement($claim)) {
             // set the owning side to null (unless already changed)
-            if ($claim->getSiteId() === $this) {
-                $claim->setSiteId(null);
+            if ($claim->getSite() === $this) {
+                $claim->setSite(null);
             }
         }
 
