@@ -30,7 +30,7 @@ final class Version20221206160922 extends AbstractMigration
         $this->addSql('CREATE TABLE patient_address (id INT AUTO_INCREMENT NOT NULL, patient_id_id INT NOT NULL, line1 VARCHAR(255) NOT NULL, line2 VARCHAR(255) DEFAULT NULL, line3 VARCHAR(255) DEFAULT NULL, area_code VARCHAR(255) NOT NULL, country_code VARCHAR(255) NOT NULL, INDEX IDX_502D3A6AEA724598 (patient_id_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE patient_payment_gateway (id INT AUTO_INCREMENT NOT NULL, patient_id_id INT NOT NULL, data JSON DEFAULT NULL, INDEX IDX_EC035A3CEA724598 (patient_id_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE site (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, reference VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE study (id INT AUTO_INCREMENT NOT NULL, claim_id INT NOT NULL, name VARCHAR(255) NOT NULL, reference VARCHAR(255) NOT NULL, INDEX IDX_E67F97497096A49F (claim_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE study (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, reference VARCHAR(255) NOT NULL, INDEX IDX_E67F97497096A49F (claim_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE `user` (id CHAR(36) NOT NULL COMMENT \'(DC2Type:uuid)\', email VARCHAR(180) NOT NULL, password VARCHAR(255) NOT NULL, roles JSON NOT NULL, UNIQUE INDEX UNIQ_8D93D649E7927C74 (email), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('ALTER TABLE claim ADD CONSTRAINT FK_A769DE27EA724598 FOREIGN KEY (patient_id_id) REFERENCES patient (id)');
         $this->addSql('ALTER TABLE claim ADD CONSTRAINT FK_A769DE27BB1E4E52 FOREIGN KEY (site_id_id) REFERENCES site (id)');
@@ -41,7 +41,6 @@ final class Version20221206160922 extends AbstractMigration
         $this->addSql('ALTER TABLE claim_item_receipt ADD CONSTRAINT FK_1902E0F2889F893B FOREIGN KEY (claim_item_id_id) REFERENCES claim_item (id)');
         $this->addSql('ALTER TABLE patient_address ADD CONSTRAINT FK_502D3A6AEA724598 FOREIGN KEY (patient_id_id) REFERENCES patient (id)');
         $this->addSql('ALTER TABLE patient_payment_gateway ADD CONSTRAINT FK_EC035A3CEA724598 FOREIGN KEY (patient_id_id) REFERENCES patient (id)');
-        $this->addSql('ALTER TABLE study ADD CONSTRAINT FK_E67F97497096A49F FOREIGN KEY (claim_id) REFERENCES claim (id)');
     }
 
     public function down(Schema $schema): void
@@ -56,7 +55,6 @@ final class Version20221206160922 extends AbstractMigration
         $this->addSql('ALTER TABLE claim_item_receipt DROP FOREIGN KEY FK_1902E0F2889F893B');
         $this->addSql('ALTER TABLE patient_address DROP FOREIGN KEY FK_502D3A6AEA724598');
         $this->addSql('ALTER TABLE patient_payment_gateway DROP FOREIGN KEY FK_EC035A3CEA724598');
-        $this->addSql('ALTER TABLE study DROP FOREIGN KEY FK_E67F97497096A49F');
         $this->addSql('DROP TABLE claim');
         $this->addSql('DROP TABLE claim_item');
         $this->addSql('DROP TABLE claim_item_receipt');
