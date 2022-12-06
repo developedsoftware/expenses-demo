@@ -36,21 +36,32 @@ const Welcome = () => (
           </h1>
           <div className="main__before-starting">
             <p>
-              This container will host your{" "}
+              This container host a generated{" "}
               <a href="https://nextjs.org/">
                 <b>Next.js</b>
               </a>{" "}
-              application. Learn how to create your first API and
-              generate a PWA:
+              application:
             </p>
+            <ul>
+              <li>
+                <Link href="/books">
+                  <a>Books</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/reviews">
+                  <a>Reviews</a>
+                </Link>
+              </li>
+            </ul>
+            <div>Learn how to create your own project:</div>
             <a
               target="_blank"
               rel="noopener noreferrer"
               href="https://api-platform.com/docs/"
-              className="main__button"
-            >
+              className="main__button">
               Get started
-              <Arrow/>
+              <Arrow />
             </a>
           </div>
           <div className="main__other">
