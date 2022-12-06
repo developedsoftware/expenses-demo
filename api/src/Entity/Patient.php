@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\PatientRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -52,6 +53,11 @@ class Patient
     public function getId(): ?int
     {
         return $this->id;
+    }
+    
+    #[ApiProperty(iris: ['http://schema.org/name'])]
+    public function getName() {
+        return "{$this->getFirstName()} {$this->getLastName()}";
     }
 
     public function getRegistrationNumber(): ?int
@@ -138,36 +144,6 @@ class Patient
             // set the owning side to null (unless already changed)
             if ($patientAddress->getPatient() === $this) {
                 $patientAddress->setPatient(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, PatientPaymentGateway>
-     */
-    public function getPatientPaymentGateways(): Collection
-    {
-        return $this->patientPaymentGateways;
-    }
-
-    public function addPatientPaymentGateway(PatientPaymentGateway $patientPaymentGateway): self
-    {
-        if (!$this->patientPaymentGateways->contains($patientPaymentGateway)) {
-            $this->patientPaymentGateways->add($patientPaymentGateway);
-            $patientPaymentGateway->setPatient($this);
-        }
-
-        return $this;
-    }
-
-    public function removePatientPaymentGateway(PatientPaymentGateway $patientPaymentGateway): self
-    {
-        if ($this->patientPaymentGateways->removeElement($patientPaymentGateway)) {
-            // set the owning side to null (unless already changed)
-            if ($patientPaymentGateway->getPatient() === $this) {
-                $patientPaymentGateway->setPatient(null);
             }
         }
 

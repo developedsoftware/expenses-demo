@@ -72,7 +72,7 @@ services:
           - MYSQL_USER=api
           - MYSQL_PASSWORD=verysecret
       volumes:
-      - db_data:/var/lib/mysql
+      - ./api/docker/db/data:/var/lib/mysql
       ports:
           - target: 3306
             published: 3306
@@ -88,7 +88,6 @@ volumes:
   caddy_data:
   caddy_config:
 ###> doctrine/doctrine-bundle ###
-  db_data:
 ###< doctrine/doctrine-bundle ###
 ###> symfony/mercure-bundle ###
 ###< symfony/mercure-bundle ###

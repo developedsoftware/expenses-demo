@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\ClaimStatusRepository;
 use Doctrine\ORM\Mapping as ORM;
@@ -33,5 +34,10 @@ class ClaimStatus
         $this->name = $name;
 
         return $this;
+    }
+    
+    #[ApiProperty(iris: ['http://schema.org/name'])]
+    public function getLabel() {
+        return $this->getName();
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\ExpenseTypeRepository;
 use Doctrine\ORM\Mapping as ORM;
@@ -23,6 +24,7 @@ class ExpenseType
         return $this->id;
     }
 
+    #[ApiProperty(iris: ['http://schema.org/name'])]
     public function getName(): ?string
     {
         return $this->name;

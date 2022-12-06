@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\PatientAddressRepository;
 use Doctrine\ORM\Mapping as ORM;
@@ -109,5 +110,11 @@ class PatientAddress
         $this->countryCode = $countryCode;
 
         return $this;
+    }
+    
+    #[ApiProperty(iris: ['http://schema.org/name'])]
+    public function getAddress(): ?string
+    {
+        return "{$this->line1}, {$this->areaCode}";
     }
 }

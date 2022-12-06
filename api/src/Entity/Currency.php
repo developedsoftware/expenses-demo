@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\CurrencyRepository;
 use Doctrine\ORM\Mapping as ORM;
@@ -26,6 +27,7 @@ class Currency
         return $this->id;
     }
 
+    #[ApiProperty(iris: ['http://schema.org/name'])]
     public function getCode(): ?string
     {
         return $this->code;

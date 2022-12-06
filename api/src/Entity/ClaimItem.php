@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\ClaimItemRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -48,6 +49,12 @@ class ClaimItem
     public function getId(): ?int
     {
         return $this->id;
+    }
+    
+    #[ApiProperty(iris: ['http://schema.org/name'])]
+    public function getClaimType(): ?string
+    {
+        return "{$this->getExpenseType()->getName()}/{$this->getClaimTimestamp()}";
     }
 
     public function getClaim(): ?Claim

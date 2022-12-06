@@ -4,7 +4,7 @@ import { ENTRYPOINT } from '../config/entrypoint';
 export default {
   // @ts-ignore
   login: ({ username, password }) => {
-    const request = new Request(`${ENTRYPOINT}/authentication_token`, {
+    const request = new Request(`${ENTRYPOINT}/auth`, {
       method: 'POST',
       body: JSON.stringify({ email: username, password }),
       headers: new Headers({ 'Content-Type': 'application/json' }),
