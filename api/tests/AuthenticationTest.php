@@ -6,6 +6,7 @@ namespace App\Tests;
 use ApiPlatform\Symfony\Bundle\Test\ApiTestCase;
 use App\Entity\User;
 use Hautelook\AliceBundle\PhpUnit\ReloadDatabaseTrait;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasher;
 
 class AuthenticationTest extends ApiTestCase
 {
@@ -19,7 +20,7 @@ class AuthenticationTest extends ApiTestCase
         $user = new User();
         $user->setEmail('test@example.com');
         $user->setPassword(
-            $container->get('security.user_password_hasher')->hashPassword($user, '$3CR3T')
+            $container->get(UserPasswordHasher::class)->hashPassword($user, '$3CR3T')
         );
 
         $manager = $container->get('doctrine')->getManager();
