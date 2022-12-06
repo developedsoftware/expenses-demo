@@ -15,11 +15,25 @@ final class SwaggerTest extends WebTestCase
     {
         $this->client = self::createClient();
     }
-
-    public function testStats(): void
+    
+    public function testServers(): void
     {
         $this->client->request('GET', '/docs.json');
         self::assertResponseIsSuccessful();
-        self::assertStringContainsString('/stats', (string) $this->client->getResponse()->getContent());
+        self::assertStringContainsString('/servers', (string) $this->client->getResponse()->getContent());
+    }
+
+    public function testPaths(): void
+    {
+        $this->client->request('GET', '/docs.json');
+        self::assertResponseIsSuccessful();
+        self::assertStringContainsString('/paths', (string) $this->client->getResponse()->getContent());
+    }
+    
+    public function testComponents(): void
+    {
+        $this->client->request('GET', '/docs.json');
+        self::assertResponseIsSuccessful();
+        self::assertStringContainsString('/components', (string) $this->client->getResponse()->getContent());
     }
 }
