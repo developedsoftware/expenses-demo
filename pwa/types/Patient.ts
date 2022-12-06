@@ -11,8 +11,8 @@ export class Patient implements Item {
     public firstName?: string,
     public lastName?: string,
     public patientAddresses?: string[],
-    public patientPaymentGateways?: string[],
-    public claims?: string[]
+    public claims?: string[],
+    public name?: string
   ) {
     this["@id"] = _id;
   }

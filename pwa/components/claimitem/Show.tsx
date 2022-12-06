@@ -103,6 +103,10 @@ export const Show: FunctionComponent<Props> = ({ claimitem, text }) => {
               />
             </td>
           </tr>
+          <tr>
+            <th scope="row">claimType</th>
+            <td>{claimitem["claimType"]}</td>
+          </tr>
         </tbody>
       </table>
       {error && (

@@ -3,7 +3,6 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import Head from "next/head";
 
-import ReferenceLinks from "../common/ReferenceLinks";
 import { fetch, getPath } from "../../utils/dataAccess";
 import { Study } from "../../types/Study";
 
@@ -54,17 +53,6 @@ export const Show: FunctionComponent<Props> = ({ study, text }) => {
           <tr>
             <th scope="row">reference</th>
             <td>{study["reference"]}</td>
-          </tr>
-          <tr>
-            <th scope="row">claims</th>
-            <td>
-              <ReferenceLinks
-                items={study["claims"].map((ref: any) => ({
-                  href: getPath(ref, "/claims/[id]"),
-                  name: ref,
-                }))}
-              />
-            </td>
           </tr>
         </tbody>
       </table>

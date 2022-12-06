@@ -285,45 +285,6 @@ export const Form: FunctionComponent<Props> = ({ patient }) => {
               />
             </div>
             <div className="form-group">
-              <div className="form-control-label">patientPaymentGateways</div>
-              <FieldArray
-                name="patientPaymentGateways"
-                render={(arrayHelpers) => (
-                  <div id="patient_patientPaymentGateways">
-                    {values.patientPaymentGateways &&
-                    values.patientPaymentGateways.length > 0 ? (
-                      values.patientPaymentGateways.map(
-                        (item: any, index: number) => (
-                          <div key={index}>
-                            <Field name={`patientPaymentGateways.${index}`} />
-                            <button
-                              type="button"
-                              onClick={() => arrayHelpers.remove(index)}
-                            >
-                              -
-                            </button>
-                            <button
-                              type="button"
-                              onClick={() => arrayHelpers.insert(index, "")}
-                            >
-                              +
-                            </button>
-                          </div>
-                        )
-                      )
-                    ) : (
-                      <button
-                        type="button"
-                        onClick={() => arrayHelpers.push("")}
-                      >
-                        Add
-                      </button>
-                    )}
-                  </div>
-                )}
-              />
-            </div>
-            <div className="form-group">
               <div className="form-control-label">claims</div>
               <FieldArray
                 name="claims"
@@ -357,6 +318,29 @@ export const Form: FunctionComponent<Props> = ({ patient }) => {
                     )}
                   </div>
                 )}
+              />
+            </div>
+            <div className="form-group">
+              <label className="form-control-label" htmlFor="patient_name">
+                name
+              </label>
+              <input
+                name="name"
+                id="patient_name"
+                value={values.name ?? ""}
+                type="text"
+                placeholder=""
+                className={`form-control${
+                  errors.name && touched.name ? " is-invalid" : ""
+                }`}
+                aria-invalid={errors.name && touched.name ? "true" : undefined}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              <ErrorMessage
+                className="invalid-feedback"
+                component="div"
+                name="name"
               />
             </div>
             {status && status.msg && (

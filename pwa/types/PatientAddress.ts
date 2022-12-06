@@ -10,7 +10,8 @@ export class PatientAddress implements Item {
     public line2?: string,
     public line3?: string,
     public areaCode?: string,
-    public countryCode?: string
+    public countryCode?: string,
+    public address?: string
   ) {
     this["@id"] = _id;
   }

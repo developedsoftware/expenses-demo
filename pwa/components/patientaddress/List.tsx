@@ -25,6 +25,7 @@ export const List: FunctionComponent<Props> = ({ patientaddresss }) => (
           <th>line3</th>
           <th>areaCode</th>
           <th>countryCode</th>
+          <th>address</th>
           <th />
         </tr>
       </thead>
@@ -62,6 +63,7 @@ export const List: FunctionComponent<Props> = ({ patientaddresss }) => (
                   <td>{patientaddress["line3"]}</td>
                   <td>{patientaddress["areaCode"]}</td>
                   <td>{patientaddress["countryCode"]}</td>
+                  <td>{patientaddress["address"]}</td>
                   <td>
                     <Link
                       href={getPath(

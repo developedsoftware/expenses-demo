@@ -288,6 +288,34 @@ export const Form: FunctionComponent<Props> = ({ patientaddress }) => {
                 name="countryCode"
               />
             </div>
+            <div className="form-group">
+              <label
+                className="form-control-label"
+                htmlFor="patientaddress_address"
+              >
+                address
+              </label>
+              <input
+                name="address"
+                id="patientaddress_address"
+                value={values.address ?? ""}
+                type="text"
+                placeholder=""
+                className={`form-control${
+                  errors.address && touched.address ? " is-invalid" : ""
+                }`}
+                aria-invalid={
+                  errors.address && touched.address ? "true" : undefined
+                }
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              <ErrorMessage
+                className="invalid-feedback"
+                component="div"
+                name="address"
+              />
+            </div>
             {status && status.msg && (
               <div
                 className={`alert ${

@@ -99,6 +99,10 @@ export const Show: FunctionComponent<Props> = ({ claim, text }) => {
               />
             </td>
           </tr>
+          <tr>
+            <th scope="row">claimReference</th>
+            <td>{claim["claimReference"]}</td>
+          </tr>
         </tbody>
       </table>
       {error && (

@@ -324,6 +324,34 @@ export const Form: FunctionComponent<Props> = ({ claimitem }) => {
                 )}
               />
             </div>
+            <div className="form-group">
+              <label
+                className="form-control-label"
+                htmlFor="claimitem_claimType"
+              >
+                claimType
+              </label>
+              <input
+                name="claimType"
+                id="claimitem_claimType"
+                value={values.claimType ?? ""}
+                type="text"
+                placeholder=""
+                className={`form-control${
+                  errors.claimType && touched.claimType ? " is-invalid" : ""
+                }`}
+                aria-invalid={
+                  errors.claimType && touched.claimType ? "true" : undefined
+                }
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              <ErrorMessage
+                className="invalid-feedback"
+                component="div"
+                name="claimType"
+              />
+            </div>
             {status && status.msg && (
               <div
                 className={`alert ${

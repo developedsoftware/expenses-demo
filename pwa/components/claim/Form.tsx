@@ -261,6 +261,38 @@ export const Form: FunctionComponent<Props> = ({ claim }) => {
                 name="claimStatus"
               />
             </div>
+            <div className="form-group">
+              <label
+                className="form-control-label"
+                htmlFor="claim_claimReference"
+              >
+                claimReference
+              </label>
+              <input
+                name="claimReference"
+                id="claim_claimReference"
+                value={values.claimReference ?? ""}
+                type="text"
+                placeholder=""
+                className={`form-control${
+                  errors.claimReference && touched.claimReference
+                    ? " is-invalid"
+                    : ""
+                }`}
+                aria-invalid={
+                  errors.claimReference && touched.claimReference
+                    ? "true"
+                    : undefined
+                }
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              <ErrorMessage
+                className="invalid-feedback"
+                component="div"
+                name="claimReference"
+              />
+            </div>
             {status && status.msg && (
               <div
                 className={`alert ${

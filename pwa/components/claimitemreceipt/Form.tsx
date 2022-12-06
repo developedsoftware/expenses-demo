@@ -174,6 +174,34 @@ export const Form: FunctionComponent<Props> = ({ claimitemreceipt }) => {
                 name="data"
               />
             </div>
+            <div className="form-group">
+              <label
+                className="form-control-label"
+                htmlFor="claimitemreceipt_preview"
+              >
+                preview
+              </label>
+              <input
+                name="preview"
+                id="claimitemreceipt_preview"
+                value={values.preview ?? ""}
+                type="text"
+                placeholder=""
+                className={`form-control${
+                  errors.preview && touched.preview ? " is-invalid" : ""
+                }`}
+                aria-invalid={
+                  errors.preview && touched.preview ? "true" : undefined
+                }
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              <ErrorMessage
+                className="invalid-feedback"
+                component="div"
+                name="preview"
+              />
+            </div>
             {status && status.msg && (
               <div
                 className={`alert ${

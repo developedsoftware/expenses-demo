@@ -1,7 +1,7 @@
 import { FunctionComponent, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { ErrorMessage, Field, FieldArray, Formik } from "formik";
+import { ErrorMessage, Formik } from "formik";
 import { useMutation } from "react-query";
 
 import { fetch, FetchError, FetchResponse } from "../../utils/dataAccess";
@@ -159,42 +159,6 @@ export const Form: FunctionComponent<Props> = ({ study }) => {
                 className="invalid-feedback"
                 component="div"
                 name="reference"
-              />
-            </div>
-            <div className="form-group">
-              <div className="form-control-label">claims</div>
-              <FieldArray
-                name="claims"
-                render={(arrayHelpers) => (
-                  <div id="study_claims">
-                    {values.claims && values.claims.length > 0 ? (
-                      values.claims.map((item: any, index: number) => (
-                        <div key={index}>
-                          <Field name={`claims.${index}`} />
-                          <button
-                            type="button"
-                            onClick={() => arrayHelpers.remove(index)}
-                          >
-                            -
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => arrayHelpers.insert(index, "")}
-                          >
-                            +
-                          </button>
-                        </div>
-                      ))
-                    ) : (
-                      <button
-                        type="button"
-                        onClick={() => arrayHelpers.push("")}
-                      >
-                        Add
-                      </button>
-                    )}
-                  </div>
-                )}
               />
             </div>
             {status && status.msg && (

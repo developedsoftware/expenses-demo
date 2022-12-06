@@ -10,7 +10,8 @@ export class Claim implements Item {
     public patient?: string,
     public study?: string,
     public site?: string,
-    public claimStatus?: string
+    public claimStatus?: string,
+    public claimReference?: any
   ) {
     this["@id"] = _id;
   }

@@ -78,6 +78,10 @@ export const Show: FunctionComponent<Props> = ({ patientaddress, text }) => {
             <th scope="row">countryCode</th>
             <td>{patientaddress["countryCode"]}</td>
           </tr>
+          <tr>
+            <th scope="row">address</th>
+            <td>{patientaddress["address"]}</td>
+          </tr>
         </tbody>
       </table>
       {error && (

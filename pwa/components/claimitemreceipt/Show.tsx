@@ -65,6 +65,10 @@ export const Show: FunctionComponent<Props> = ({ claimitemreceipt, text }) => {
             <th scope="row">data</th>
             <td>{claimitemreceipt["data"]}</td>
           </tr>
+          <tr>
+            <th scope="row">preview</th>
+            <td>{claimitemreceipt["preview"]}</td>
+          </tr>
         </tbody>
       </table>
       {error && (

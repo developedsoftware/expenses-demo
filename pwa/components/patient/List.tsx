@@ -25,8 +25,8 @@ export const List: FunctionComponent<Props> = ({ patients }) => (
           <th>firstName</th>
           <th>lastName</th>
           <th>patientAddresses</th>
-          <th>patientPaymentGateways</th>
           <th>claims</th>
+          <th>name</th>
           <th />
         </tr>
       </thead>
@@ -60,22 +60,13 @@ export const List: FunctionComponent<Props> = ({ patients }) => (
                   </td>
                   <td>
                     <ReferenceLinks
-                      items={patient["patientPaymentGateways"].map(
-                        (ref: any) => ({
-                          href: getPath(ref, "/patientpaymentgateways/[id]"),
-                          name: ref,
-                        })
-                      )}
-                    />
-                  </td>
-                  <td>
-                    <ReferenceLinks
                       items={patient["claims"].map((ref: any) => ({
                         href: getPath(ref, "/claims/[id]"),
                         name: ref,
                       }))}
                     />
                   </td>
+                  <td>{patient["name"]}</td>
                   <td>
                     <Link href={getPath(patient["@id"], "/patients/[id]")}>
                       <a>

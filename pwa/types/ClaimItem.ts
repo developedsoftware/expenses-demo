@@ -11,7 +11,8 @@ export class ClaimItem implements Item {
     public amount?: number,
     public additionalInfo?: string,
     public claimTimestamp?: Date,
-    public claimItemReceipts?: string[]
+    public claimItemReceipts?: string[],
+    public claimType?: string
   ) {
     this["@id"] = _id;
   }

@@ -21,7 +21,6 @@ export const List: FunctionComponent<Props> = ({ studys }) => (
           <th>id</th>
           <th>name</th>
           <th>reference</th>
-          <th>claims</th>
           <th />
         </tr>
       </thead>
@@ -42,14 +41,6 @@ export const List: FunctionComponent<Props> = ({ studys }) => (
                   </th>
                   <td>{study["name"]}</td>
                   <td>{study["reference"]}</td>
-                  <td>
-                    <ReferenceLinks
-                      items={study["claims"].map((ref: any) => ({
-                        href: getPath(ref, "/claims/[id]"),
-                        name: ref,
-                      }))}
-                    />
-                  </td>
                   <td>
                     <Link href={getPath(study["@id"], "/studys/[id]")}>
                       <a>
