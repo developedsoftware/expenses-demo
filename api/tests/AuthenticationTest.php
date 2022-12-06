@@ -39,13 +39,5 @@ class AuthenticationTest extends ApiTestCase
         $json = $response->toArray();
         $this->assertResponseIsSuccessful();
         $this->assertArrayHasKey('token', $json);
-
-        // test not authorized
-        $client->request('GET', '/admin');
-        $this->assertResponseStatusCodeSame(401);
-
-        // test authorized
-        $client->request('GET', '/admin', ['auth_bearer' => $json['token']]);
-        $this->assertResponseIsSuccessful();
     }
 }

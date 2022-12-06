@@ -33,7 +33,7 @@ jobs:
           done
           exit 1
       - name: Check HTTP reachability
-        run: curl -v -o /dev/null http://localhost
+        run: curl -v -o /dev/null https://localhost
       - name: Check API reachability
         run: curl -vk -o /dev/null https://localhost/docs
       - name: Check PWA reachability
