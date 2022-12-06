@@ -38,9 +38,8 @@ jobs:
         run: curl -vk -o /dev/null https://localhost
       - name: Check PWA reachability
         run: "curl -vk -o /dev/null -H 'Accept: text/html' https://localhost"
-      - name: Create test database
+      - name: Migrate
         run: |
-          docker compose exec -T php bin/console -e test doctrine:database:create
           docker compose exec -T php bin/console -e test doctrine:migrations:migrate --no-interaction
       - name: PHPUnit
         run: docker compose exec -T php bin/phpunit
