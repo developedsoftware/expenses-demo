@@ -33,11 +33,11 @@ jobs:
           done
           exit 1
       - name: Check HTTP reachability
-        run: curl -v -o /dev/null https://localhost
+        run: curl -v -o /dev/null http://localhost
       - name: Check API reachability
-        run: curl -vk -o /dev/null https://localhost/docs
+        run: curl -vk -o /dev/null http://localhost/docs
       - name: Check PWA reachability
-        run: "curl -vk -o /dev/null -H 'Accept: text/html' https://localhost/admin"
+        run: "curl -vk -o /dev/null -H 'Accept: text/html' http://localhost/admin"
       - name: Migrate
         run: |
           docker compose exec -T php bin/console -e test doctrine:migrations:migrate --no-interaction

@@ -8,6 +8,7 @@ use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\ApiProperty;
 use App\Repository\ClaimRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ClaimRepository::class)]
@@ -115,8 +116,13 @@ class Claim
     }
     
     #[ApiProperty(iris: ['http://schema.org/name'])]
-    public function getClaimReference() {
-        return "{$this->getSite()->getReference()}{$this->getId()}";
+    public function getClaimReference(): string
+    {
+        if (isset($this->id)) {
+            return "{$this->getSite()->getReference()}{$this->getId()}";
+        }
+        
+        return "";
     }
 
     public function getClaimStatus(): ?ClaimStatus
